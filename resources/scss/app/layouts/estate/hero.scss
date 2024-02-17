@@ -1,0 +1,28 @@
+.hero {
+    background: url("../../../../../public/images/Banner.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 8rem 0;
+}
+
+.hero__description {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.hero__title {
+    white-space: nowrap;
+    font-size: 5.6rem;
+    font-weight: bold;
+    color: $white;
+}
+
+.hero__description {
+    max-width: 58.6rem;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: $white;
+}

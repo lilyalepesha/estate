@@ -1,0 +1,47 @@
+.login {
+    background: url("../../../../public/images/login-bg.jpg") center/cover;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.login::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* цвет затемнения (черный с прозрачностью 50%) */
+    z-index: 1; /* убедитесь, что затемненный слой находится над фоном */
+}
+
+.login__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login__title {
+    z-index: 5;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: $white;
+    margin-bottom: 3rem;
+}
+
+.login__form__checkbox {
+    color: $blue;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.form__registration {
+    z-index: 5;
+    color: $gray;
+}

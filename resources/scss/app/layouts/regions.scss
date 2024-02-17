@@ -1,0 +1,37 @@
+.regions {
+    background-color: $dark;
+    padding: 4rem 0 10rem;
+}
+
+.regions__title {
+    text-transform: uppercase;
+    color: $white;
+    text-align: center;
+    letter-spacing: 2rem;
+    font-size: 2.2rem;
+    margin-bottom: 10rem;
+}
+
+.regions__slide {
+    position: relative;
+}
+
+.regions__slide::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.regions__slide-overlay {
+    position: absolute;
+    left: 20%;
+    top: 45%;
+    color: $white;
+    font-size: 4rem;
+    font-weight: 600;
+}
+

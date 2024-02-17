@@ -1,0 +1,29 @@
+.advantages {
+    background-color: $dark;
+    padding: 15rem 0;
+}
+
+.advantages__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 1rem;
+}
+
+.advantages__content-text {
+    max-width: 60rem;
+}
+
+.advantages__content-title {
+    max-width: 58.5rem;
+}
+
+.advantages__content-title {
+    color: $white;
+}
+
+.advantages__item {
+    &:first-child {
+        flex-direction: row-reverse;
+    }
+}

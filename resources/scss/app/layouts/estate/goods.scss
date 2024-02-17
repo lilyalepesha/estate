@@ -1,0 +1,60 @@
+.goods__container {
+    padding: 10rem 0;
+}
+
+.goods__items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    row-gap: 4rem;
+    column-gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.goods__item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: $dark-gray;
+    border-radius: 5rem;
+    padding: 3rem 2.5rem;
+    flex-direction: column;
+}
+
+.goods__item-info {
+    display: flex;
+    align-items: flex-start;
+    column-gap: 1.5rem;
+    justify-content: flex-start;
+    p {
+        font-size: 1.6rem;
+        color: $gray;
+    }
+}
+
+.goods__item-title {
+    max-width: 30rem;
+    font-size: 2rem;
+    color: $white;
+    font-weight: bold;
+}
+.goods__cost {
+    display: flex;
+    justify-content: center;
+    column-gap: 10rem;
+    align-items: center;
+}
+
+.goods__cost p {
+    font-size: 1.6rem;
+    color: $gray; /* Если $gray это переменная SASS, убедитесь, что она определена */
+}
+
+.goods__cost-text {
+    font-size: 1.9rem;
+    color: $white;
+    background-color: $gray;
+    padding: 1.8rem;
+    border-radius: 1rem;
+    font-weight: bold;
+}

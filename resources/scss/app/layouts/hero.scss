@@ -1,0 +1,15 @@
+.hero {
+    padding: 3rem 0 0 0;
+    background: url("../../../../public/images/hero-bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: bottom; /* Прижимаем фоновое изображение к нижней части блока */
+    height: 72.9rem;
+}
+
+.hero__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}

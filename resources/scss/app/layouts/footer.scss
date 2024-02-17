@@ -1,0 +1,45 @@
+.footer {
+    padding: 8rem 0 5rem 0;
+    background: url("../../../../public/images/footer.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: $dark;
+}
+
+.footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 3rem;
+}
+
+.footer__logo {
+    color: $white;
+    font-size: 3.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3.5rem;
+    span {
+        color: $blue;
+    }
+}
+
+.footer__description {
+    font-size: 1.6rem;
+    color: $gray;
+}
+
+.footer__socials {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 3rem;
+}
+
+.goods__item-image > img {
+    width: 29.3rem;
+    height: 22.2rem;
+}
+

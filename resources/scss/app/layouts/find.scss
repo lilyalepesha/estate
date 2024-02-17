@@ -1,0 +1,58 @@
+.find {
+    background-color: $dark;
+    background-image: url("../../../../public/images/find-bg.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10% 0;
+}
+.find__container {
+    padding: 10% 20%; /* Используйте проценты для адаптивного заполнения */
+}
+
+.find__content-title {
+    max-width: 60%; /* Используйте проценты для адаптивной ширины */
+    line-height: 120%;
+}
+
+.find__content-title, .find__content-text {
+    word-wrap: break-word; /* Разрешить автоматический перенос слов */
+}
+
+.find__content-text {
+    max-width: 50%; /* Используйте проценты для адаптивной ширины */
+    line-height: 136%;
+    color: $dark-purple;
+}
+//.find__container {
+//    padding: 10rem 45rem;
+//}
+
+.find__content {
+    margin-bottom: 10rem;
+}
+
+//.find__content-title {
+//    max-width: 52.8rem;
+//    line-height: 120%;
+//}
+
+//.find__content-text {
+//    max-width: 47.1rem;
+//    line-height: 136%;
+//    color: $dark-purple;
+//}
+
+.find__authorization {
+    background-color: $blue;
+    padding: 2.5rem 3rem;
+    border-radius: 3rem;
+    color: $white;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    transition: all 0.3s ease-out;
+    &:hover {
+        background-color: darken($blue, 10%);
+        border: 1px solid $white;
+    }
+}
