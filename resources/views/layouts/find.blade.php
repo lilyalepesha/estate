@@ -6,6 +6,8 @@
                 Мы предоставляем полный комплекс услуг по продаже, покупке и застройке недвижимости.
             </p>
         </div>
-        <a href="{{ route('login.index') }}" class="find__authorization">Авторизация</a>
+        @guest
+            <a href="{{ route('login.index') }}" class="find__authorization">Авторизация</a>
+        @endguest
     </div>
 </section>

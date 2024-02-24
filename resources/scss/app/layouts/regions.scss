@@ -28,10 +28,20 @@
 
 .regions__slide-overlay {
     position: absolute;
-    left: 20%;
-    top: 45%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     color: $white;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 600;
+    text-align: center;
 }
 
+.regions__slider-wrapper {
+    display: flex;
+}
+
+.regions__slide-image img {
+    width: 31rem;
+    height: 38.3rem;
+}

@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Architect;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +24,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('update-architect', function (User $user, Architect $architect) {
+            return auth()->guard('architects')->check() && auth()->guard('architects')->user()->id === $architect->id;
+        });
+        Gate::define('is_architect', function () {
+           return auth()->guard('architects')->check();
+        });
     }
 }

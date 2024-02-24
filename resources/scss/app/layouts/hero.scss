@@ -5,6 +5,10 @@
     background-size: 100% 100%;
     background-position: bottom; /* Прижимаем фоновое изображение к нижней части блока */
     height: 72.9rem;
+    @media(max-width: 800px) {
+        background: none;
+        height: auto;
+    }
 }
 
 .hero__container {
@@ -12,4 +16,9 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
+    @media(max-width: 800px) {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 }

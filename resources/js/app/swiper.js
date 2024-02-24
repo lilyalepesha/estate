@@ -6,13 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
         slidesPerView: 3,
         spaceBetween: 30,
         breakpoints: {
-            660: {
-                slidesPerView: 2,
+            600: {
+                slidesPerView: 3,
+            },
+            400: {
+                slidesPerView: 20,
             },
             320: {
                 slidesPerView: 1,
             },
-            992: {
+            1260: {
                 slidesPerView: 4,
             },
         },

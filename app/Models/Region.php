@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Region extends Model
 {
     use HasFactory;
+
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'name',
+        'street',
+        'image_url'
+    ];
 }

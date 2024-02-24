@@ -11,13 +11,14 @@
     <link rel="stylesheet" href="{{ asset('dist/css/app/estate.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="{{ asset('dist/js/app/app.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="{{ asset('dist/js/app/estate.js') }}"></script>
     <title>Недвижимость</title>
 </head>
 <body>
     @include('layouts.header')
     @include('layouts.estate.hero')
-    @include('layouts.estate.goods')
+    <x-goods-component></x-goods-component>
     @include('layouts.footer')
 </body>
 </html>

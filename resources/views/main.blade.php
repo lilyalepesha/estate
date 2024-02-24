@@ -15,13 +15,12 @@
     <title>Недвижимость</title>
 </head>
 <body>
-    <div class="header__wrapper">
-        @include('layouts.header')
-        @include('layouts.hero')
-    </div>
+    @include('layouts.message')
+    @include('layouts.header')
+    @include('layouts.hero')
     @include('layouts.advantages')
-    @include('layouts.regions')
-    @include('layouts.estate')
+    <x-regions-component></x-regions-component>
+    <x-estate-component></x-estate-component>
     @include('layouts.find')
 </body>
 @include('layouts.footer')

@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Architect extends Model
+class Architect extends Authenticatable
 {
     use HasFactory;
 
@@ -14,8 +14,17 @@ class Architect extends Model
         'name',
         'father_name',
         'email',
-        'number',
         'experience',
-        'verified'
+        'verified',
+        'password',
+        'avatar_url',
+        'description'
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $casts = [
+        'password' => 'hashed',
     ];
 }

@@ -1,0 +1,27 @@
+.alert{
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 2rem 0;
+    p {
+        color: white;
+        font-weight: 600;
+        font-size: 1.6rem;
+        text-align: center;
+    }
+}
+
+.danger-alert {
+    background-color: lightcoral;
+}
+
+.success-alert {
+    background-color: green;
+}
+
+.admin__load-img {
+    font-size: 1rem;
+    text-align: center;
+}

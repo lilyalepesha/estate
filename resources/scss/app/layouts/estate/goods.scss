@@ -58,3 +58,60 @@
     border-radius: 1rem;
     font-weight: bold;
 }
+
+.goods__filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+.goods__filter-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $dark-gray;
+    padding: 2rem;
+    column-gap: 3rem;
+}
+
+.goods__filter-select {
+    background-color: $dark-gray;
+    color: $gray;
+    border: none;
+    outline: none;
+    option {
+        border: none;
+        outline: none;
+    }
+}
+
+.goods__filter-separator {
+    width: 0.5rem;
+    background-color: $blue;
+    height: 100%;
+}
+
+.goods__filter-button {
+    background-color: $blue;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.3rem;
+    padding: 1.5rem 2.2rem;
+    color: $white;
+    text-align: center;
+    border-radius: 0.6rem;
+    transition: background-color 0.3s ease-out;
+    &:hover {
+        background-color: darken($blue, 15%);
+    }
+}
+
+.slash {
+    margin: 0 10px; /* Расстояние между разделителем и select */
+    color: $blue; /* Цвет разделителя */
+}

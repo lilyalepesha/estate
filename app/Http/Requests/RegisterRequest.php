@@ -22,6 +22,29 @@ class RegisterRequest extends FormRequest
     }
 
     /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'Поле :attribute обязательно для заполнения',
+            'email.email' => 'Поле :attribute должно быть действительным email адресом',
+            'email.unique' => 'Пользователь с таким :attribute уже существует',
+            'email.max' => 'Длина :attribute не должна превышать :max символов',
+            'password.required' => 'Поле :attribute обязательно для заполнения',
+            'password.confirmed' => 'Пароли не совпадают',
+            'password.min' => 'Длина :attribute должна быть не менее :min символов',
+            'password.max' => 'Длина :attribute не должна превышать :max символов',
+            'avatar.required' => 'Поле :attribute обязательно для заполнения',
+            'avatar.image' => 'Файл :attribute должен быть изображением',
+            'avatar.mimes' => 'Допустимые форматы файла: jpeg, png, jpg',
+            'avatar.max' => 'Размер :attribute не должен превышать :max Кб'
+        ];
+    }
+
+    /**
      * @return string[]
      */
     public function attributes(): array
