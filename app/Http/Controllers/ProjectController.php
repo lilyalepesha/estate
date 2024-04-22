@@ -8,6 +8,7 @@ use App\Models\Project;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -18,8 +19,17 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        $projects = Project::query()
+            ->with(['region', 'architect'])
+            ->when(auth()->guard('architects')->check(),
+                fn(Builder $query) => $query->where(
+                    'projects.architect_id', '=', auth()->guard('architects')->id()
+                )->paginate(30),
+                fn(Builder $query) => $query->paginate(30)
+            );
+
         return view('admin.projects.index', [
-            'projects' => Project::query()->with(['region', 'architect'])->paginate(30)
+            'projects' => $projects
         ]);
     }
 
@@ -38,7 +48,7 @@ class ProjectController extends Controller
     {
         $name = Str::uuid() . '.' . $request->file('image')->extension();
 
-        Storage::putFileAs( 'public/projects/', $request->file('image'), $name);
+        Storage::putFileAs('public/projects/', $request->file('image'), $name);
 
         $project = Project::query()->create($request->validated());
 
@@ -66,7 +76,7 @@ class ProjectController extends Controller
     {
         $name = Str::uuid() . '.' . $request->file('image')->extension();
 
-        Storage::putFileAs( 'public/projects/', $request->file('image'), $name);
+        Storage::putFileAs('public/projects/', $request->file('image'), $name);
 
         $project->update([
             'name' => $request->string('name'),

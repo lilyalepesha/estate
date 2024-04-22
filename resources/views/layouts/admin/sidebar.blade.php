@@ -42,7 +42,8 @@
         @endauth
         @if(auth()->guard('architects')->check())
             <div class="header__avatar">
-                <img width="40" height="40" src="{{ asset('storage/' . auth()->guard('architects')->user()?->avatar_url) }}"
+                <img width="40" height="40"
+                     src="{{ asset('storage/' . auth()->guard('architects')->user()?->avatar_url) }}"
                      alt="Avatar">
             </div>
         @endif
@@ -80,15 +81,15 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route("admin.project.index")}}" class="nav-link">
-                        <i class="fas fa-project-diagram mr-2"></i>
-                        <p>
-                            Проекты
-                        </p>
-                    </a>
-                </li>
             @endif
+            <li class="nav-item">
+                <a href="{{route("admin.project.index")}}" class="nav-link">
+                    <i class="fas fa-project-diagram mr-2"></i>
+                    <p>
+                        Проекты
+                    </p>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- /.sidebar -->

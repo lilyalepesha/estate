@@ -1234,3 +1234,130 @@ input[type=file]::file-selector-button:active {
 .architect_form__registration a {
   color: #1DAEFF;
 }
+
+.best__container {
+  padding: 8rem 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.best__image-wrapper:first-child {
+  display: grid;
+  grid-template-columns: 86rem 20rem;
+  grid-template-rows: 54rem;
+  grid-gap: 2rem;
+}
+
+.big-image {
+  grid-column: 1/span 1;
+  grid-row: 1/span 1;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.small-images {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.small-images img {
+  width: 22rem;
+  height: 16.5rem;
+}
+
+.best__image-wrapper:nth-child(2) {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+}
+
+.best__image-wrapper:nth-child(2) img {
+  margin-top: 3rem;
+  width: 20rem;
+  height: 15.5rem;
+}
+
+.best__advantages {
+  margin-top: 3rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 1px solid white;
+  border-radius: 1rem;
+}
+
+.best__advantages-item {
+  padding: 2rem 5rem;
+  color: white;
+}
+
+.best__advantages-item {
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+}
+
+.best__advantages-item:first-child {
+  border-left: none;
+}
+
+.best__advantages-item:last-child {
+  border-right: none;
+}
+
+.best__content {
+  margin-top: 5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.best__content-title {
+  color: #1DAEFF;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.best__content-text {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 180%;
+  font-size: 1.6rm;
+  max-width: 87.3rem;
+}
+
+.best__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+}
+.best__list-item {
+  position: relative;
+  margin-top: 4rem;
+  color: white;
+}
+.best__list-item::before {
+  position: absolute;
+  content: "✓";
+  width: 1rem;
+  height: 1rem;
+  color: #1DAEFF;
+  left: -6%;
+}
+
+.best__map {
+  padding: 5rem 0;
+}
+.best__map-title {
+  color: #1DAEFF;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.best__map iframe {
+  width: 80rem;
+  height: 30rem;
+}

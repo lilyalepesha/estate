@@ -24,6 +24,9 @@
                 </div>
                 <div class="header__list-item"><a href="#!" class="header__list-link">Агенты </a></div>
                 <div class="header__list-item"><a href="#1" class="header__list-link">Проекты</a></div>
+                @can('is_admin')
+                    <div class="header__list-item"><a href="{{ route('admin.index') }}" class="header__list-link">Админ панель</a></div>
+                @endcan
                 @if(!auth()->guard('architects')->check())
                     <div class="header__list-item">z
                         <a href="{{ route('architect.index') }}" class="header__list-link">Архитекторы</a>

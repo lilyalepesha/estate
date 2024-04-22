@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('price_per_meter')->nullable();
             $table->unsignedInteger('area')->nullable();
             $table->string('image_url')->nullable();
-
+            $table->boolean('is_favourite')->default(false);
             $table->unsignedInteger('type')->default(ProjectTypeEnum::COTTAGE->value);
 
             $table->foreignId('architect_id')

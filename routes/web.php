@@ -72,7 +72,7 @@ Route::middleware('is_admin')
     ->delete('/architects/{architect}', [ArchitectController::class, 'destroy'])->name('admin.architects.destroy');
 
 Route::middleware('is_admin')->prefix('admin')->as('admin')->resource('region', RegionController::class);
-Route::middleware('is_admin')->prefix('admin')->as('admin')->resource('project', ProjectController::class);
+Route::middleware('access')->prefix('admin')->as('admin')->resource('project', ProjectController::class);
 
 Route::as('architect.login.store')->post('architect/login', [ArchitectLoginController::class, 'login']);
 Route::as('architect.login.index')->get('architect/login', function () {

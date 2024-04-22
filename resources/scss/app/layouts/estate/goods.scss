@@ -115,3 +115,10 @@
     margin: 0 10px; /* Расстояние между разделителем и select */
     color: $blue; /* Цвет разделителя */
 }
+
+.goods_item-start.active {
+    fill: $blue;
+    path {
+        stroke: none;
+    }
+}

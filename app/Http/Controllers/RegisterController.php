@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use App\Notifications\RegisterNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -26,6 +27,9 @@ class RegisterController extends Controller
         $user->update([
             'avatar_url' => 'avatars/' . $name,
         ]);
+
+        /** @var User $user */
+        $user->notify(new RegisterNotification);
 
         return redirect()->back()->with('success', 'Вы успешно зарегистрированы');
     }

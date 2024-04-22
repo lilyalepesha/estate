@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('projects', [EstateController::class, 'get']);
 Route::get('goods', [GoodsController::class, 'goods']);
+Route::post('update/favourites', [GoodsController::class, 'updateFavorite']);

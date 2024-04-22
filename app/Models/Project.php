@@ -18,7 +18,8 @@ class Project extends Model
         'type',
         'area',
         'price_per_meter',
-        'image_url'
+        'image_url',
+        'is_favourite'
     ];
 
     /**

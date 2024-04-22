@@ -883,3 +883,10 @@ footer {
   margin: 0 10px; /* Расстояние между разделителем и select */
   color: #1DAEFF; /* Цвет разделителя */
 }
+
+.goods_item-start.active {
+  fill: #1DAEFF;
+}
+.goods_item-start.active path {
+  stroke: none;
+}

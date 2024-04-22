@@ -22,6 +22,7 @@
     <x-regions-component></x-regions-component>
     <x-estate-component></x-estate-component>
     @include('layouts.find')
+    @include('layouts.best')
 </body>
 @include('layouts.footer')
 </html>
