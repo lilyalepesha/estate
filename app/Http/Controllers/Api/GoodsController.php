@@ -36,10 +36,9 @@ final class GoodsController extends Controller
                     fn(Builder $query) => $query->where('region_id', '=', $request->integer('region'))
                 )->get();
 
-//            auth()->guard('architects')->check()
             $regions = $regions->map(function ($item) {
                 $item->image_url = asset('storage/' . $item->image_url);
-                $item->is_architect = true;
+                $item->is_architect = auth()->guard('architects')->check();
                 return $item;
             });
             return response()->json([
