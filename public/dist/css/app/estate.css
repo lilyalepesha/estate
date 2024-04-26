@@ -884,6 +884,10 @@ footer {
   color: #1DAEFF; /* Цвет разделителя */
 }
 
+.goods_item-start {
+  margin-bottom: 1rem;
+}
+
 .goods_item-start.active {
   fill: #1DAEFF;
 }

@@ -116,6 +116,10 @@
     color: $blue; /* Цвет разделителя */
 }
 
+.goods_item-start {
+    margin-bottom: 1rem;
+}
+
 .goods_item-start.active {
     fill: $blue;
     path {

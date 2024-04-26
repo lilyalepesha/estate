@@ -41,6 +41,7 @@ final class GoodsController extends Controller
                 $item->is_architect = auth()->guard('architects')->check();
                 return $item;
             });
+
             return response()->json([
                 'success' => true,
                 'data' => $regions
