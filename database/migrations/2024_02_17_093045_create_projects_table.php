@@ -15,10 +15,9 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->decimal('price_per_meter')->nullable();
             $table->unsignedInteger('area')->nullable();
-            $table->string('image_url')->nullable();
             $table->boolean('is_favourite')->default(false);
             $table->unsignedInteger('type')->default(ProjectTypeEnum::COTTAGE->value);
 

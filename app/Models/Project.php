@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Project extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'description',
@@ -36,5 +35,21 @@ class Project extends Model
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProjectImage::class, 'project_id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function image(): HasOne
+    {
+        return $this->hasOne(ProjectImage::class, 'project_id')->latestOfMany();
     }
 }

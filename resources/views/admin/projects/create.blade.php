@@ -1,6 +1,79 @@
 @extends('layouts.admin.main')
 
 @section('content')
+    <script>
+        // Получаем все кастомные селекты
+        const customSelects = document.querySelectorAll('.custom-select');
+
+        // Для каждого кастомного селекта добавляем обработчик события клика
+        customSelects.forEach(select => {
+            const originalSelect = select.querySelector('select');
+            const customOptions = Array.from(originalSelect.options).map(option => {
+                return `<div class="custom-option" data-value="${option.value}">${option.textContent}</div>`;
+            }).join('');
+
+            // Создаем кастомное выпадающее меню
+            const customDropdown = document.createElement('div');
+            customDropdown.className = 'custom-dropdown';
+            customDropdown.innerHTML = customOptions;
+            select.appendChild(customDropdown);
+
+            // При клике на кастомный селект открываем или закрываем выпадающее меню
+            select.addEventListener('click', () => {
+                select.classList.toggle('open');
+            });
+
+            // При клике на кастомную опцию выбираем её и закрываем выпадающее меню
+            customDropdown.addEventListener('click', (e) => {
+                if (e.target.classList.contains('custom-option')) {
+                    const value = e.target.dataset.value;
+                    originalSelect.value = value;
+                    select.querySelector('.custom-select-label').textContent = e.target.textContent;
+                    select.classList.remove('open');
+                }
+            });
+
+            // При выборе опции в оригинальном селекте обновляем текст в кастомном селекте
+            originalSelect.addEventListener('change', () => {
+                const selectedOption = originalSelect.options[originalSelect.selectedIndex];
+                select.querySelector('.custom-select-label').textContent = selectedOption.textContent;
+            });
+        });
+    </script>
+    <style>
+        /* Скрытие оригинального select */
+        .custom-select select {
+            display: none;
+        }
+
+        /* Стилизация кастомного select */
+        .custom-select {
+            position: relative;
+            width: 200px;
+        }
+
+        .custom-select select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+        }
+
+        /* Стилизация стрелки */
+        .custom-select::after {
+            content: '\25BC'; /* стрелка вниз */
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none; /* отключение событий мыши */
+        }
+    </style>
+
     <form method="POST" action="{{ route('admin.project.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
@@ -72,20 +145,39 @@
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">Выберите фото</label>
+                <label for="image" class="form-label">Выберите изображения</label>
                 <div class="input-group">
-                    <input type="file" class="form-control" id="image" name="image">
+                    <input type="file" class="form-control" id="image" name="images[]" multiple>
                     <label class="input-group-text" for="image">Загрузить</label>
                 </div>
-                @error('image')
+                @error('images.*')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+                @error('images')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="properties" class="form-label">Выберите свойства проекта</label>
+                <div class="input-group">
+                    <select style="outline: none; width: 100%" class="form-select" aria-label="Default select example" multiple name="properties[]">
+                        @foreach($properties as $property)
+                            <option value="{{ $property }}">{{ $property }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @error('properties.*')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+                @error('properties')
                     <span class="red">{{ $message }}</span>
                 @enderror
             </div>
         </div>
-        <!-- /.card-body -->
-
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Добавить</button>
         </div>
     </form>
 @endsection
+

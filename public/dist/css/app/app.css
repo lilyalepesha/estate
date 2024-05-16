@@ -464,11 +464,11 @@ footer {
   padding: 1.5rem 1.5rem 1.5rem 5rem;
 }
 .form__input::-moz-placeholder {
-  color: #8F90A6;
+  color: #454657;
   font-size: 1.4rem;
 }
 .form__input::placeholder {
-  color: #8F90A6;
+  color: #454657;
   font-size: 1.4rem;
 }
 
@@ -525,7 +525,7 @@ footer {
   width: 15.1rem;
   height: 4.4rem;
   position: relative;
-  z-index: 5;
+  z-index: 11;
 }
 
 .header__wrapper {
@@ -586,7 +586,7 @@ footer {
 @media (max-width: 800px) {
   .icon__menu {
     position: relative;
-    z-index: 10;
+    z-index: 11;
     display: block;
     width: 4rem;
     height: 2rem;
@@ -645,7 +645,7 @@ footer {
     transition: all 0.3s ease-out;
   }
   .header__nav.active {
-    z-index: 4;
+    z-index: 10;
     left: 0;
   }
 }
@@ -914,12 +914,18 @@ footer {
   font-size: 1.6rem;
 }
 .estate__cost-text {
+  font-size: 1.9rem;
   color: white;
+  background-color: #1DAEFF;
   padding: 1.8rem;
   border-radius: 1rem;
-  font-size: 1.9rem;
-  font-weight: 600;
-  background-color: #8F90A6;
+  font-weight: bold;
+  transition: all 0.3s ease-out;
+}
+@media (any-hover: hover) {
+  .estate__cost-text:hover {
+    background-color: #0085d0;
+  }
 }
 
 .estate__links-link {
@@ -1048,6 +1054,7 @@ footer {
 .goods__item-image > img {
   width: 29.3rem;
   height: 22.2rem;
+  border-radius: 0.5rem;
 }
 
 .login {
@@ -1211,6 +1218,7 @@ input[type=file]::file-selector-button:active {
 
 .architect_register__form-input {
   padding: 1.5rem 2rem;
+  color: #000000;
 }
 
 .architect_form__registration {
@@ -1236,7 +1244,7 @@ input[type=file]::file-selector-button:active {
 }
 
 .best__container {
-  padding: 8rem 0;
+  padding: 4rem 0 8rem 0;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -1360,4 +1368,10 @@ input[type=file]::file-selector-button:active {
 .best__map iframe {
   width: 80rem;
   height: 30rem;
+}
+
+.best__title {
+  text-align: center;
+  padding: 20px 0 0 0;
+  color: #1DAEFF;
 }

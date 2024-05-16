@@ -19,6 +19,13 @@
     border-radius: 5rem;
     padding: 3rem 2.5rem;
     flex-direction: column;
+    border: 1px solid transparent;
+    transition: all 0.3s ease-out;
+    @media (any-hover: hover) {
+        &:hover {
+            border: 1px solid $blue;
+        }
+    }
 }
 
 .goods__item-info {
@@ -38,6 +45,7 @@
     color: $white;
     font-weight: bold;
 }
+
 .goods__cost {
     display: flex;
     justify-content: center;
@@ -53,10 +61,16 @@
 .goods__cost-text {
     font-size: 1.9rem;
     color: $white;
-    background-color: $gray;
+    background-color: $blue;
     padding: 1.8rem;
     border-radius: 1rem;
     font-weight: bold;
+    transition: all 0.3s ease-out;
+    @media(any-hover: hover) {
+        &:hover {
+            background-color: darken($blue, 15%);
+        }
+    }
 }
 
 .goods__filter {

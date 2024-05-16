@@ -90,7 +90,14 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route("property.index") }}" class="nav-link">
+                    <i class="fas fa-project-diagram"></i>
+                    <p>
+                        Свойства проектов
+                    </p>
+                </a>
+            </li>
         </ul>
     </div>
-    <!-- /.sidebar -->
 </aside>

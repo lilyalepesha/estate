@@ -24,7 +24,10 @@ class StoreProjectRequest extends FormRequest
             'region_id' => ['required', 'integer'],
             'price_per_meter' => ['required', 'numeric'],
             'area' => ['required', 'integer'],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp']
+            'images' => ['required', 'array'],
+            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,bmp', 'max:5120'],
+            'properties' => ['required', 'array'],
+            'properties.*' => ['required', 'string'],
         ];
     }
 
@@ -38,14 +41,14 @@ class StoreProjectRequest extends FormRequest
             'region_id' => 'ID региона',
             'price_per_meter' => 'Цена за метр',
             'area' => 'Площадь',
-            'image' => 'Изображение проекта'
+            'image' => 'Изображение проекта',
+            'properties' => 'Свойства'
         ];
     }
 
     public function messages(): array
     {
         return [
-            // Сообщения для каждого правила валидации
             'name.required' => 'Введите название проекта',
             'name.min' => 'Название проекта должно содержать минимум :min символа',
             'name.max' => 'Название проекта должно содержать максимум :max символов',
@@ -65,9 +68,12 @@ class StoreProjectRequest extends FormRequest
             'price_per_meter.numeric' => 'Цена за метр должна быть числом',
             'area.required' => 'Укажите площадь проекта',
             'area.integer' => 'Площадь проекта должна быть числом',
-            'image.required' => 'Добавьте изображение',
-            'image.image' => 'Файл должен быть изображением',
-            'image.mimes' => 'Изображение должно быть в формате: jpg, jpeg, png, webp'
+            'images.*.required' => 'Добавьте изображение',
+            'images.*.image' => 'Файл должен быть изображением',
+            'images.*.mimes' => 'Изображение должно быть в формате: jpg, jpeg, png, bmp',
+            'images.*.max' => 'Размер изображения не должен превышать 5 МБ',
+            'images' => 'Добавьте изображение',
+            'properties' => 'Свойства обязательны для заполенения'
         ];
     }
 }

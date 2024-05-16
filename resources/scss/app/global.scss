@@ -150,7 +150,7 @@ footer {
     border: none;
     padding: 1.5rem 1.5rem 1.5rem 5rem;
     &::placeholder {
-        color: $gray;
+        color: darken($gray, 30%);
         font-size: 1.4rem;
     }
 }

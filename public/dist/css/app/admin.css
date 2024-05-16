@@ -464,11 +464,11 @@ footer {
   padding: 1.5rem 1.5rem 1.5rem 5rem;
 }
 .form__input::-moz-placeholder {
-  color: #8F90A6;
+  color: #454657;
   font-size: 1.4rem;
 }
 .form__input::placeholder {
-  color: #8F90A6;
+  color: #454657;
   font-size: 1.4rem;
 }
 

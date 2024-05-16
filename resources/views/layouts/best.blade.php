@@ -1,4 +1,5 @@
 <section class="best">
+    <h1 class="best__title">Пример наших проектов</h1>
     <div class="container best__container">
         <div class="best__image-wrapper">
             <img src="{{ asset('images/best/1.png') }}" alt="best" class="big-image">

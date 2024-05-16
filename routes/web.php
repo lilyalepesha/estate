@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\ArchitectController;
 use App\Http\Controllers\ArchitectLoginController;
 use App\Http\Controllers\ArchitectRequestController;
 use App\Http\Controllers\ArchitectsLogoutController;
+use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProjectController;
@@ -76,5 +78,20 @@ Route::middleware('access')->prefix('admin')->as('admin')->resource('project', P
 
 Route::as('architect.login.store')->post('architect/login', [ArchitectLoginController::class, 'login']);
 Route::as('architect.login.index')->get('architect/login', function () {
-   return view('architect.login');
+    return view('architect.login');
 });
+
+Route::as('goods.')->prefix('goods')->controller(GoodsController::class)->group(function () {
+    Route::get('{id}', 'view')->name('view');
+});
+
+Route::middleware('is_admin')->group(function () {
+    Route::resource('property', PropertyController::class);
+});
+
+Route::as('creators.')
+    ->prefix('creators')
+    ->controller(ArchitectController::class)
+    ->group(function () {
+        Route::get('index', 'list')->name('list');
+    });

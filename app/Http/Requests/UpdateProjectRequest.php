@@ -22,7 +22,10 @@ class UpdateProjectRequest extends FormRequest
             'type' => ['required', 'integer', Rule::enum(ProjectTypeEnum::class)],
             'price_per_meter' => ['required', 'numeric'],
             'area' => ['required', 'integer'],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp']
+            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,bmp', 'max:5120'],
+            'properties' => ['nullable', 'array'],
+            'properties.*' => ['required', 'string'],
+            'images' => ['nullable', 'array'],
         ];
     }
 
@@ -63,9 +66,12 @@ class UpdateProjectRequest extends FormRequest
             'price_per_meter.numeric' => 'Цена за метр должна быть числом',
             'area.required' => 'Укажите площадь проекта',
             'area.integer' => 'Площадь проекта должна быть числом',
-            'image.required' => 'Добавьте изображение',
-            'image.image' => 'Файл должен быть изображением',
-            'image.mimes' => 'Изображение должно быть в формате: jpg, jpeg, png, webp'
+            'images.*.image' => 'Файл должен быть изображением',
+            'images.*.mimes' => 'Изображение должно быть в формате: jpg, jpeg, png, bmp',
+            'images.*.max' => 'Размер изображения не должен превышать 5 МБ',
+            'images.*.required' => 'Добавьте изображение',
+            'images' => 'Добавьте изображение',
+            'properties' => 'Свойства обязательны для заполенения'
         ];
     }
 }

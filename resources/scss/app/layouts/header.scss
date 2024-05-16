@@ -10,7 +10,7 @@
     width: 15.1rem;
     height: 4.4rem;
     position: relative;
-    z-index: 5;
+    z-index: 11;
 }
 
 .header__wrapper {
@@ -68,7 +68,7 @@
     background-color: transparent;
     @media (max-width: 800px) {
         position: relative;
-        z-index: 10;
+        z-index: 11;
         display: block;
         width: 4rem;
         height: 2rem;
@@ -132,7 +132,7 @@
         display: flex;
         transition: all 0.3s ease-out;
         &.active {
-            z-index: 4;
+            z-index: 10;
             left: 0;
         }
     }

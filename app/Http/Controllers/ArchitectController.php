@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArchitectRequest;
 use App\Http\Requests\UpdateArchitectRequest;
 use App\Models\Architect;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class ArchitectController extends Controller
 {
@@ -93,5 +96,9 @@ class ArchitectController extends Controller
         $architect->delete();
 
         return redirect()->route('admin.index')->with('success', 'Успешно удалён');
+    }
+    public function list()
+    {
+        return view('architect.list');
     }
 }

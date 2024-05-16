@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('dist/css/app/message.css')}}">
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 @yield('content')

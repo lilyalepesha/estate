@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\ProjectImage;
 use App\Models\Region;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 final class GoodsController extends Controller
@@ -26,8 +28,7 @@ final class GoodsController extends Controller
                     projects.area as area,
                     projects.price_per_meter as price,
                     regions.name as region_name,
-                    regions.street as street,
-                    projects.image_url as image_url'
+                    regions.street as street'
                 )
                 ->join('regions', 'projects.region_id', '=', 'regions.id')
                 ->when($request->filled('type'),
@@ -36,8 +37,15 @@ final class GoodsController extends Controller
                     fn(Builder $query) => $query->where('region_id', '=', $request->integer('region'))
                 )->get();
 
-            $regions = $regions->map(function ($item) {
-                $item->image_url = asset('storage/' . $item->image_url);
+            $regions = $regions->transform(function ($item) {
+                $images = ProjectImage::query()->firstWhere('project_id','=', $item?->id);
+
+                if (empty($images)) {
+                    $item->setAttribute('image_url', asset('images/default/images.png'));
+                } else {
+                    $item->setAttribute('image_url',  asset('storage/' . $images->url));
+                }
+
                 $item->is_architect = auth()->guard('architects')->check();
                 return $item;
             });
