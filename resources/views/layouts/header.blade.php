@@ -34,6 +34,7 @@
                     </div>
                 @endif
                 @if(auth()->guard('architects')->check())
+                    <div class="header__list-item"><a href="{{ route('admin.index') }}" class="header__list-link">Админ панель</a></div>
                     <div class="header__list-item">
                         <a href="{{ route('architects.logout') }}" class="header__list-link">Выйти</a>
                     </div>

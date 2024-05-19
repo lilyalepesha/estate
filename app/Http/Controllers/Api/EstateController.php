@@ -18,12 +18,6 @@ use Illuminate\Support\Str;
 
 final class EstateController extends Controller
 {
-
-    /**
-     * @var int
-     */
-    private int $limit = 8;
-
     public function index(Request $request)
     {
         $estates = Estate::query()
@@ -128,17 +122,11 @@ final class EstateController extends Controller
             $images = ObjectImage::query()
                 ->where('object_id', '=', $project?->id)
                 ->where('type', '=', ObjectEnum::ESTATE->value)
-                ->limit($this->limit)
+                ->limit(8)
                 ->pluck('url');
 
             $items = collect();
             $imagesCount = $images->count();
-
-            if ($imagesCount < $this->limit) {
-                for ($i = 0; $i < $this->limit - $imagesCount; $i++) {
-                    $images->push(asset('images/default/images.png'));
-                }
-            }
 
             $project->setAttribute('main_image', asset('storage/' . $images->first()));
             $images = $images->skip(1);

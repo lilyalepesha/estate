@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\FavouriteType;
 use App\Enums\ObjectEnum;
 use App\Enums\UserTypeEnum;
+use App\Models\EstateProperty;
 use App\Models\ObjectImage;
 use App\Models\Project;
 use Illuminate\Contracts\Foundation\Application;
@@ -88,12 +89,6 @@ final class GoodsController extends Controller
             $items = collect();
             $imagesCount = $images->count();
 
-            if ($imagesCount < $this->limit) {
-                for ($i = 0; $i < $this->limit - $imagesCount; $i++) {
-                    $images->push(asset('images/default/images.png'));
-                }
-            }
-
             $project->setAttribute('main_image', asset('storage/' . $images->first()));
             $images = $images->skip(1);
 
@@ -107,12 +102,7 @@ final class GoodsController extends Controller
             $project->setAttribute('small_images', $smallImages);
             $project->setAttribute('big_images', $bigImages);
 
-            $properties = ObjectImage::query()
-                ->where('type', '=', ObjectEnum::PROJECT->value)
-                ->where('object_id', '=', $project->id)
-                ->pluck('value');
-
-            return view('goods.view', compact('project', 'properties'));
+            return view('goods.view', compact('project'));
         } catch (\Throwable $e) {
             return redirect()->route('main');
         }

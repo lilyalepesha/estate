@@ -1,19 +1,26 @@
 <section class="best">
     <div class="container best__container">
         <div class="best__image-wrapper">
+            @if(!empty($project->main_image))
+                <img src="{{ $project->main_image }}" alt="best" class="big-image image">
+            @endif
 
-            <img src="{{ $project->main_image }}" alt="best" class="big-image">
-            <div class="small-images">
-                @foreach($project->small_images as $image)
-                    <img src="{{ $image }}" alt="best">
+            @if(!empty($project->small_images))
+                <div class="small-images">
+                    @foreach($project->small_images as $image)
+                        <img class="image" src="{{ $image }}" alt="best">
+                    @endforeach
+                </div>
+            @endif
+        </div>
+        @if(!empty($project->big_images))
+            <div class="best__image-wrapper">
+                @foreach($project->big_images as $image)
+                    <img class="image" src="{{ $image }}" alt="best">
                 @endforeach
             </div>
-        </div>
-        <div class="best__image-wrapper">
-            @foreach($project->big_images as $image)
-                <img src="{{ $image }}" alt="best">
-            @endforeach
-        </div>
+        @endif
+
         <div class="best__content">
             <h3 class="best__content-title">
                 Описание
@@ -29,5 +36,9 @@
                 </li>
             @endforeach
         </ul>
+    </div>
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
     </div>
 </section>
