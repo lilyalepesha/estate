@@ -61,18 +61,6 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="architectEmailInput">Регион</label>
-                <select name="region_id" class="form-control" id="architectEmailInput">
-                    @foreach (\App\Models\Region::query()->pluck('name', 'id') as $id => $name)
-                        <option value="{{ $id }}" @if($id == $project->region_id) selected @endif>{{ $name }}</option>
-                    @endforeach
-                </select>
-                @error('region_id')
-                    <span class="red">{{ $message }}</span>
-                @enderror
-            </div>
-
             <div class="mb-3">
                 <label for="image" class="form-label">Выберите изображения</label>
                 <div class="input-group">
@@ -86,24 +74,6 @@
                     <span class="red">{{ $message }}</span>
                 @enderror
             </div>
-
-            <div class="mb-3">
-                <label for="properties" class="form-label">Выберите свойства проекта</label>
-                <div class="input-group">
-                    <select style="outline: none; width: 100%" class="form-select" aria-label="Default select example" multiple name="properties[]">
-                        @foreach($properties as $property)
-                            <option value="{{ $property }}">{{ $property }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                @error('properties.*')
-                    <span class="red">{{ $message }}</span>
-                @enderror
-                @error('properties')
-                    <span class="red">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
         </div>
         <!-- /.card-body -->
 

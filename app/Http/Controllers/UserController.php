@@ -35,7 +35,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): RedirectResponse
     {
         $name = Str::uuid() . '.' . $request->file('image')->extension();
 
@@ -69,19 +69,27 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, int $id)
+    public function update(UpdateRequest $request, int $id): RedirectResponse
     {
         try {
-            $name = Str::uuid() . '.' . $request->file('image')->extension();
+            if ($request->has('image')) {
+                $name = Str::uuid() . '.' . $request->file('image')->extension();
 
-            Storage::putFileAs( 'public/avatars/', $request->file('image'), $name);
+                Storage::putFileAs( 'public/avatars/', $request->file('image'), $name);
+
+                User::query()->whereKey($id)->update([
+                    'avatar_url' => 'avatars/' . $name,
+                ]);
+            }
 
             User::query()->where('id','=', $id)->update([
+                'surname' => $request->string('surname'),
+                'phone' => $request->string('phone'),
+                'father_name' => $request->string('father_name'),
                 'email' => $request->string('email'),
                 'password' => Hash::make($request->string('password')),
                 'name' => $request->string('name'),
                 'role' => $request->integer('role'),
-                'avatar_url' => 'avatars/' . $name,
             ]);
 
             return redirect()->route('admin.index')->with('success', 'Успешно отредактирован');

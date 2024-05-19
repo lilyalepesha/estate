@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ObjectEnum;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\ObjectImage;
 use App\Models\Project;
-use App\Models\ProjectImage;
-use App\Models\ProjectProperty;
 use App\Models\Property;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -56,16 +57,9 @@ class ProjectController extends Controller
 
             Storage::putFileAs('public/projects/', $image, $name);
 
-            ProjectImage::query()->insert([
-                'project_id' => $project->id,
+            ObjectImage::query()->insert([
+                'object_id' => $project->id,
                 'url' => 'projects/' . $name,
-            ]);
-        }
-
-        foreach ($request->properties as $property) {
-            ProjectProperty::query()->insert([
-               'project_id' => $project->id,
-               'value' => $property,
             ]);
         }
 
@@ -88,11 +82,12 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project): RedirectResponse
     {
         if (!empty($request->images)) {
-            ProjectImage::query()
-                ->where('project_id', '=', $project?->id)
+            ObjectImage::query()
+                ->where('object_id', '=', $project?->id)
+                ->where('type', '=', ObjectEnum::PROJECT->value)
                 ->delete();
 
             foreach ($request->images as $image) {
@@ -100,22 +95,9 @@ class ProjectController extends Controller
 
                 Storage::putFileAs('public/projects/', $image, $name);
 
-                ProjectImage::query()->insert([
-                    'project_id' => $project->id,
+                ObjectImage::query()->insert([
+                    'object_id' => $project->id,
                     'url' => 'projects/' . $name,
-                ]);
-            }
-        }
-
-        if (!empty($request->properties)) {
-            foreach ($request->properties as $property) {
-                ProjectProperty::query()
-                    ->where('project_id', '=', $project->id)
-                    ->delete();
-
-                ProjectProperty::query()->insert([
-                    'project_id' => $project->id,
-                    'value' => $property,
                 ]);
             }
         }
@@ -134,7 +116,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(Project $project): RedirectResponse
     {
         $project->delete();
 

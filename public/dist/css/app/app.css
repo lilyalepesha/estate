@@ -1375,3 +1375,75 @@ input[type=file]::file-selector-button:active {
   padding: 20px 0 0 0;
   color: #1DAEFF;
 }
+
+.agent__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+
+.agent__content {
+  color: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.agent__content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.agent__content-avatar img {
+  width: 250px;
+  height: 268px;
+}
+
+.agent-socials {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 4rem;
+  flex-direction: column;
+}
+
+.agent__content-text {
+  margin-top: 2rem;
+  font-size: 3.6rem;
+  font-weight: bold;
+}
+
+.agent-socials-phone {
+  font-size: 3rem;
+}
+
+.agent-socials__whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+  color: white;
+  font-size: 3rem;
+  transition: color 0.3s ease-out;
+}
+.agent-socials__whatsapp:hover {
+  color: #1DAEFF;
+}
+
+.agent-socials__deals {
+  font-size: 3rem;
+}
+
+body {
+  background-color: #00080d !important;
+}
+
+a {
+  text-decoration: none !important;
+}

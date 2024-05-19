@@ -14,6 +14,7 @@ class Region extends Model
      */
     protected $fillable = [
         'name',
+        'area',
         'street',
         'image_url'
     ];

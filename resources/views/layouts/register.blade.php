@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="register__form-input-wrapper form__input-wrapper">
-                    <input name="avatar" class="register__form-input--file register__form-input" type="file" required>
+                    <input name="avatar" style="color: white" class="register__form-input--file register__form-input" type="file" required>
                     <div class="error-validation">
                         @error('avatar')
                             <span>{{ $message }}</span>

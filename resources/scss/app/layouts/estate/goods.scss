@@ -131,9 +131,16 @@
 }
 
 .goods_item-start {
+    transition: all 0.3s ease-out;
     margin-bottom: 1rem;
 }
 
+.goods_item-start:hover {
+    fill: $blue;
+    path {
+        stroke: none;
+    }
+}
 .goods_item-start.active {
     fill: $blue;
     path {

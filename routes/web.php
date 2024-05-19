@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\AgentController;
+use App\Http\Controllers\Api\EstateController;
 use App\Http\Controllers\ArchitectController;
 use App\Http\Controllers\ArchitectLoginController;
 use App\Http\Controllers\ArchitectRequestController;
 use App\Http\Controllers\ArchitectsLogoutController;
+use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -27,10 +30,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::as('main')->get('/', function () {
     return view('main');
-});
-
-Route::as('estate.index')->get('/estate', function () {
-    return view('estate');
 });
 
 Route::as('login.index')->get('/login', function () {
@@ -83,6 +82,7 @@ Route::as('architect.login.index')->get('architect/login', function () {
 
 Route::as('goods.')->prefix('goods')->controller(GoodsController::class)->group(function () {
     Route::get('{id}', 'view')->name('view');
+    Route::get('/', 'index')->name('index');
 });
 
 Route::middleware('is_admin')->group(function () {
@@ -95,3 +95,24 @@ Route::as('creators.')
     ->group(function () {
         Route::get('index', 'list')->name('list');
     });
+
+Route::as('agent.')
+    ->prefix('agent')
+    ->controller(AgentController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+    });
+
+Route::as('estate.')
+    ->prefix('estate')
+    ->controller(EstateController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'view')->name('view');
+    });
+
+Route::as('admin.')->prefix('admin')->group(function (){
+   Route::resource('admin/estate', \App\Http\Controllers\Admin\EstateController::class)->except('show');
+});
+
+Route::get('favourite',[FavouriteController::class, 'index'])->name('favourite.index');

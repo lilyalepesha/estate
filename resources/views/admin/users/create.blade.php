@@ -12,6 +12,27 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label for="exampleInputEmail1">Фамилия</label>
+                <input name="surname" class="form-control" id="exampleInputEmail1" placeholder="Введите фамилию">
+                @error('surname')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Отчество</label>
+                <input name="father_name" class="form-control" id="exampleInputEmail1" placeholder="Введите отчество">
+                @error('father_name')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Номер телефона</label>
+                <input name="phone" class="form-control" id="exampleInputEmail1" placeholder="Введите номер телефона">
+                @error('phone')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
                 <input name="email" class="form-control" id="exampleInputEmail1" placeholder="Введите email">
                 @error('email')

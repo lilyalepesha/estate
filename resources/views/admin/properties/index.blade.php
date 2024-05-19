@@ -1,45 +1,39 @@
 @extends('layouts.admin.main')
 
-
 @section('content')
-    <div class="container m-3">
-        <div class="row">
-            <div class="col-12">
-                <form action="{{ route('property.create') }}" method="GET">
-                    @csrf
-                    <button type="submit" class="btn btn-success btn-sm float-start">Добавить</button>
-                </form>
+    <div class="container mt-3">
+        <div class="row mb-3">
+            <div class="col-12 text-end">
+                <a href="{{ route('property.create') }}" class="btn btn-success btn-sm">Добавить</a>
             </div>
         </div>
-    </div>
-    <table class="table pt-5">
-        <thead>
-        <tr>
-            <th scope="col">Название</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($properties as $property)
-            <tr style="display: flex; align-content: flex-start; justify-content: flex-start">
-                <td>{{ $property->value }}</td>
-                    <form action="{{route('property.edit', $property->id)}}" method="GET">
-                        @csrf
-                        <button type="submit" class="btn btn-primary float-end btn-sm">Редактировать</button>
-                    </form>
-                </td>
 
-                <td>
-                    <form action="{{ route('property.destroy', $property->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger float-end btn-sm">Удалить</button>
-                    </form>
-                </td>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Название</th>
+                <th scope="col" class="text-end">Действия</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
-    <div class="d-flex justify-content-center mt-3">
-        {{ $properties->links() }}
+            </thead>
+            <tbody>
+            @foreach($properties as $property)
+                <tr>
+                    <td>{{ $property->value }}</td>
+                    <td class="text-end">
+                        <a href="{{ route('property.edit', $property->id) }}" class="btn btn-primary btn-sm">Редактировать</a>
+                        <form action="{{ route('property.destroy', $property->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-center mt-3">
+            {{ $properties->links() }}
+        </div>
     </div>
 @endsection

@@ -18,17 +18,10 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->decimal('price_per_meter')->nullable();
             $table->unsignedInteger('area')->nullable();
-            $table->boolean('is_favourite')->default(false);
             $table->unsignedInteger('type')->default(ProjectTypeEnum::COTTAGE->value);
 
             $table->foreignId('architect_id')
                 ->index('architect_index')
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
-
-            $table->foreignId('region_id')
-                ->index('region_index')
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

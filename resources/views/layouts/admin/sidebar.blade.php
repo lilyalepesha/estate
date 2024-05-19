@@ -10,13 +10,11 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Authentication Links -->
-
         <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
                 {{ Auth::user()?->name }}
             </a>
-
             @auth
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="button__profile-out" href="{{ route('logout') }}">Выйти</a>
@@ -43,8 +41,7 @@
         @if(auth()->guard('architects')->check())
             <div class="header__avatar">
                 <img width="40" height="40"
-                     src="{{ asset('storage/' . auth()->guard('architects')->user()?->avatar_url) }}"
-                     alt="Avatar">
+                     src="{{ asset('storage/' . auth()->guard('architects')->user()?->avatar_url) }}" alt="Avatar">
             </div>
         @endif
     </ul>
@@ -54,50 +51,51 @@
     <!-- Brand Logo -->
     <div class="sidebar">
         <ul class="nav nav-pills nav-sidebar flex-column pt-3">
-            @if(!auth()->guard('architects')->check())
+            @can('is_admin')
                 <li class="nav-item">
                     <a href="{{ route('users.index') }}" class="nav-link">
                         <i class="fas fa-user mr-2"></i>
-                        <p>
-                            Пользователи
-                        </p>
+                        <p>Пользователи</p>
                     </a>
                 </li>
-            @endif
-            <li class="nav-item">
-                <a href="{{route('admin.architects.index')}}" class="nav-link">
-                    <i class="fas fa-archway mr-2"></i>
-                    <p>
-                        Архитекторы
-                    </p>
-                </a>
-            </li>
-            @if(!auth()->guard('architects')->check())
                 <li class="nav-item">
-                    <a href="{{route("admin.region.index")}}" class="nav-link">
+                    <a href="{{ route('admin.region.index') }}" class="nav-link">
                         <i class="fas fa-map-marker-alt mr-2"></i>
-                        <p>
-                            Регионы
-                        </p>
+                        <p>Регионы</p>
                     </a>
                 </li>
-            @endif
-            <li class="nav-item">
-                <a href="{{route("admin.project.index")}}" class="nav-link">
-                    <i class="fas fa-project-diagram mr-2"></i>
-                    <p>
-                        Проекты
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route("property.index") }}" class="nav-link">
-                    <i class="fas fa-project-diagram"></i>
-                    <p>
-                        Свойства проектов
-                    </p>
-                </a>
-            </li>
+            @endcan
+
+            @canany(['is_admin', 'is_architect'])
+                <li class="nav-item">
+                    <a href="{{ route('admin.project.index') }}" class="nav-link">
+                        <i class="fas fa-project-diagram mr-2"></i>
+                        <p>Проекты</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.architects.index') }}" class="nav-link">
+                        <i class="fas fa-archway mr-2"></i>
+                        <p>Архитекторы</p>
+                    </a>
+                </li>
+            @endcanany
+            @can('is_admin')
+                <li class="nav-item">
+                    <a href="{{ route('property.index') }}" class="nav-link">
+                        <i class="fas fa-project-diagram"></i>
+                        <p>Свойства недвижимости</p>
+                    </a>
+                </li>
+            @endcan
+            @canany(['is_admin', 'registered'])
+                <li class="nav-item">
+                    <a href="{{ route('admin.estate.index') }}" class="nav-link">
+                        <i class="fas fa-house-user"></i>
+                        <p>Недвижимость</p>
+                    </a>
+                </li>
+            @endcanany
         </ul>
     </div>
 </aside>

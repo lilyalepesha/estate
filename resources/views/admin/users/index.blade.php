@@ -1,6 +1,5 @@
 @extends('layouts.admin.main')
 
-
 @section('content')
     <div class="container m-3" >
         <div class="row">
@@ -16,7 +15,10 @@
         <thead>
         <tr>
             <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Отчество</th>
             <th scope="col">Email</th>
+            <th scope="col">Номер телефона</th>
             <th scope="col">Дата создания</th>
             <th scope="col">Редактировать</th>
             <th scope="col">Удалить</th>
@@ -26,25 +28,28 @@
         <tbody>
         @foreach($users as $user)
             <tr>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
-                <td>{{$user->created_at}}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->surname }}</td>
+                <td>{{ $user->father_name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->phone }}</td>
+                <td>{{ $user->created_at }}</td>
                 <td>
-                    <form action="{{route('users.edit', $user->id)}}" method="GET">
+                    <form action="{{ route('users.edit', $user->id) }}" method="GET">
                         @csrf
                         <button type="submit" class="btn btn-block btn-primary btn-sm">Редактировать</button>
                     </form>
                 </td>
 
                 <td>
-                    <form action="{{route('users.destroy', $user->id)}}" method="POST">
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-block btn-danger btn-sm">Удалить</button>
                     </form>
                 </td>
                 <td>
-                    <li>{{\App\Enums\RoleEnum::from($user->role)->label()}}</li>
+                    <li>{{ \App\Enums\RoleEnum::from($user->role)->label() }}</li>
                 </td>
             </tr>
         @endforeach

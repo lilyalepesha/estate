@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRegionRequest extends FormRequest
 {
@@ -15,9 +16,17 @@ class UpdateRegionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:2', 'max:255'],
+            'name' => [
+                'required',
+                'min:2',
+                'max:255',
+                Rule::unique('regions')->where(function ($query) {
+                    return $query->where('area', $this->input('area'));
+                })
+            ],
             'street' => ['required', 'string', 'min:2', 'max:255'],
-            'image' => ['required', 'image', 'mimes:jpg,webp,png,jpeg']
+            'area' => ['required', 'string', 'min:2', 'max:255'],
+            'image' => ['nullable', 'image', 'mimes:jpg,webp,png,jpeg']
         ];
     }
 
@@ -36,6 +45,10 @@ class UpdateRegionRequest extends FormRequest
             'street.string' => 'Поле "Улица" должно быть строкой.',
             'street.min' => 'Поле "Улица" должно содержать не менее :min символов.',
             'street.max' => 'Поле "Улица" не должно превышать :max символов.',
+            'area.required' => 'Поле "Регион" обязательно для заполнения.',
+            'area.string' => 'Поле "Регион" должно быть строкой.',
+            'area.min' => 'Поле "Регион" должно содержать не менее :min символов.',
+            'area.max' => 'Поле "Регион" не должно превышать :max символов.',
             'image.required' => 'Поле "Изображение" обязательно для заполнения.',
             'image.image' => 'Поле "Изображение" должно быть изображением.',
             'image.mimes' => 'Поле "Изображение" должно быть файлом типа: jpg, webp, png, jpeg.'
@@ -52,6 +65,7 @@ class UpdateRegionRequest extends FormRequest
         return [
             'name' => 'Имя',
             'street' => 'Улица',
+            'area' => 'Область',
             'image' => 'Изображение'
         ];
     }

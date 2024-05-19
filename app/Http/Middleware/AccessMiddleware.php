@@ -17,7 +17,8 @@ class AccessMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (
-            ($request->user() && $request->user()->role === RoleEnum::ADMIN->value)
+            ($request->user() && $request->user()->role === RoleEnum::ADMIN->value
+            || $request->user() && $request->user()->role === RoleEnum::REGISTERED->value)
             || (auth()->guard('architects')->check() && auth()->guard('architects')->user()->verified)
         ) {
             return $next($request);

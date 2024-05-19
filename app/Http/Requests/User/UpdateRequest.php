@@ -17,11 +17,14 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'phone' => ['nullable', 'string', 'min:12', 'max:255', 'unique:users,phone'],
+            'surname' => ['nullable', 'string', 'max:255'],
+            'father_name' => ['nullable', 'string', 'max:255'],
             'password' => ['required', 'min:8', 'max:255'],
             'name' => ['required', 'string', 'min:2', 'max:255'],
             'role' => ['required', 'integer', Rule::enum(RoleEnum::class)],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp']
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp']
         ];
     }
 
@@ -32,8 +35,12 @@ class UpdateRequest extends FormRequest
     {
         return [
             'email' => 'Email',
+            'phone' => 'Телефон',
+            'surname' => 'Фамилия',
+            'father_name' => 'Отчество',
             'password' => 'Пароль',
             'name' => 'Имя',
+            'role' => 'Роль',
             'image' => 'Аватар'
         ];
     }
@@ -49,6 +56,15 @@ class UpdateRequest extends FormRequest
             'email.required' => 'Поле :attribute обязательно для заполнения.',
             'email.email' => 'Поле :attribute должно быть действительным адресом электронной почты.',
             'email.max' => 'Поле :attribute не должно превышать :max символов.',
+            'email.unique' => 'Поле :attribute должно быть уникальным.',
+            'phone.string' => 'Поле :attribute должно быть строкой.',
+            'phone.max' => 'Поле :attribute не должно превышать :max символов.',
+            'phone.min' => 'Поле :attribute минимум должно содержать :min символов.',
+            'phone.unique' => 'Поле :attribute должно быть уникальным.',
+            'surname.string' => 'Поле :attribute должно быть строкой.',
+            'surname.max' => 'Поле :attribute не должно превышать :max символов.',
+            'father_name.string' => 'Поле :attribute должно быть строкой.',
+            'father_name.max' => 'Поле :attribute не должно превышать :max символов.',
             'password.required' => 'Поле :attribute обязательно для заполнения.',
             'password.min' => 'Поле :attribute должно содержать как минимум :min символов.',
             'password.max' => 'Поле :attribute не должно превышать :max символов.',
@@ -56,10 +72,11 @@ class UpdateRequest extends FormRequest
             'name.string' => 'Поле :attribute должно быть строкой.',
             'name.min' => 'Поле :attribute должно содержать как минимум :min символов.',
             'name.max' => 'Поле :attribute не должно превышать :max символов.',
-            'email.unique' => 'Поле :attribute должно быть уникальным',
-            'image.required' => 'Добавьте изображение',
-            'image.image' => 'Файл должен быть изображением',
-            'image.mimes' => 'Изображение должно быть в формате: jpg, jpeg, png, webp'
+            'role.required' => 'Поле :attribute обязательно для заполнения.',
+            'role.integer' => 'Поле :attribute должно быть числом.',
+            'image.required' => 'Добавьте изображение.',
+            'image.image' => 'Файл должен быть изображением.',
+            'image.mimes' => 'Изображение должно быть в формате: jpg, jpeg, png, webp.'
         ];
     }
 }

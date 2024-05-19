@@ -11,15 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project_images', function (Blueprint $table) {
+        Schema::create('estate_properties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')
-                ->nullable()
+
+            $table->foreignId('estate_id')
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->string('url')->nullable();
+            $table->foreignId('property_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();;
+
+            $table->timestamps();
         });
     }
 
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('project_images');
+        Schema::dropIfExists('estate_properties');
     }
 };

@@ -12,3 +12,12 @@
 @import "app/layouts/register";
 @import "app/architect/register";
 @import "app/layouts/best";
+@import "app/layouts/agent";
+
+body {
+    background-color: #00080DFF !important;
+}
+
+a {
+    text-decoration: none !important;
+}

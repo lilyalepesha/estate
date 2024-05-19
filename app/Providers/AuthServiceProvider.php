@@ -28,10 +28,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('update-architect', function (User $user, Architect $architect) {
             return auth()->guard('architects')->check() && auth()->guard('architects')->user()->id === $architect->id;
         });
+
         Gate::define('is_architect', function () {
            return auth()->guard('architects')->check();
         });
 
         Gate::define('is_admin', fn(User $user) => $user->role === RoleEnum::ADMIN->value);
+
+        Gate::define('registered', fn(User $user) => $user->role === RoleEnum::REGISTERED->value);
     }
 }

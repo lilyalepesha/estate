@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArchitectRequest;
 use App\Http\Requests\UpdateArchitectRequest;
 use App\Models\Architect;
+use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
@@ -67,11 +68,17 @@ class ArchitectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateArchitectRequest $request, Architect $architect)
+    public function update(UpdateArchitectRequest $request, Architect $architect): RedirectResponse
     {
-        $name = Str::uuid() . '.' . $request->file('image')->extension();
+        if ($request->has('image')) {
+            $name = Str::uuid() . '.' . $request->file('image')->extension();
 
-        Storage::putFileAs( 'public/architects/avatars/', $request->file('image'), $name);
+            Storage::putFileAs( 'public/architects/avatars/', $request->file('image'), $name);
+
+            $architect->update([
+                'avatar_url' => 'architects/avatars/' . $name,
+            ]);
+        }
 
         $architect->update([
             'name' => $request->string('name'),
@@ -82,7 +89,6 @@ class ArchitectController extends Controller
             'password' => $request->string('password'),
             'experience' => $request->string('experience'),
             'verified' => $request->boolean('verified'),
-            'avatar_url' => 'architects/avatars/' . $name,
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Успешно отредактирован');

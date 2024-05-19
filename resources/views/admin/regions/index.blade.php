@@ -14,7 +14,8 @@
     <table class="table pt-5">
         <thead>
         <tr>
-            <th scope="col">Название</th>
+            <th scope="col">Город</th>
+            <th scope="col">Область</th>
             <th scope="col">Улица</th>
             <th scope="col">Дата создания</th>
             <th scope="col">Редактировать</th>
@@ -25,6 +26,7 @@
         @foreach($regions as $region)
             <tr>
                 <td>{{ $region->name }}</td>
+                <td>{{ $region->area }}</td>
                 <td>{{ $region->street }}</td>
                 <td>{{ $region->created_at }}</td>
                 <td>

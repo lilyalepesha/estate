@@ -18,16 +18,13 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:2', 'max:255', 'string'],
-            'description' => ['required', 'max:255', 'min:2', 'string'],
+            'description' => ['required', 'max:1000', 'min:2', 'string'],
             'type' => ['required', 'integer', Rule::enum(ProjectTypeEnum::class)],
             'architect_id' => ['required', 'integer'],
-            'region_id' => ['required', 'integer'],
             'price_per_meter' => ['required', 'numeric'],
             'area' => ['required', 'integer'],
             'images' => ['required', 'array'],
             'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,bmp', 'max:5120'],
-            'properties' => ['required', 'array'],
-            'properties.*' => ['required', 'string'],
         ];
     }
 

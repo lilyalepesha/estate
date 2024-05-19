@@ -23,8 +23,6 @@ class UpdateProjectRequest extends FormRequest
             'price_per_meter' => ['required', 'numeric'],
             'area' => ['required', 'integer'],
             'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,bmp', 'max:5120'],
-            'properties' => ['nullable', 'array'],
-            'properties.*' => ['required', 'string'],
             'images' => ['nullable', 'array'],
         ];
     }

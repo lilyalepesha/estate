@@ -31,7 +31,7 @@ class RegionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRegionRequest $request)
+    public function store(StoreRegionRequest $request): RedirectResponse
     {
         $region = Region::query()->create($request->validated());
 
@@ -62,14 +62,19 @@ class RegionController extends Controller
      */
     public function update(UpdateRegionRequest $request, Region $region): RedirectResponse
     {
-        $name = Str::uuid() . '.' . $request->file('image')->extension();
+        if ($request->has('image')) {
+            $name = Str::uuid() . '.' . $request->file('image')->extension();
 
-        Storage::putFileAs( 'public/regions/', $request->file('image'), $name);
+            Storage::putFileAs( 'public/regions/', $request->file('image'), $name);
+
+            $region->update([
+                'image_url' => 'regions/' . $name,
+            ]);
+        }
 
         $region->update([
             'name' => $request->string('name'),
             'street' => $request->string('street'),
-            'image_url' => 'regions/' . $name,
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Успешно обновлён');
@@ -80,7 +85,7 @@ class RegionController extends Controller
      * @param Region $region
      * @return RedirectResponse
      */
-    public function destroy(Region $region)
+    public function destroy(Region $region): RedirectResponse
     {
         $region->delete();
 

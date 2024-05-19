@@ -22,7 +22,7 @@ class UpdateArchitectRequest extends FormRequest
             'email' => ['required', 'email'],
             'password' => ['required', 'min:8', 'string'],
             'experience' => ['required', 'max:255'],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp']
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp']
         ];
     }
 

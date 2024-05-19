@@ -6,6 +6,7 @@ enum RoleEnum: int
 {
     case REGISTERED = 1;
     case ADMIN = 2;
+    case AGENT = 3;
 
     /**
      * @return string
@@ -14,7 +15,8 @@ enum RoleEnum: int
     {
         return match ($this) {
             self::ADMIN => 'Администратор',
-            self::REGISTERED => 'Зарегистрированный пользователь'
+            self::REGISTERED => 'Зарегистрированный пользователь',
+            self::AGENT => 'Агент'
         };
     }
 }

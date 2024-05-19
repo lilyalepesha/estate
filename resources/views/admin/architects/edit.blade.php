@@ -23,9 +23,9 @@
 
             <div class="form-group">
                 <label for="descriptionInput">Описание</label>
-                <input name="description" class="form-control" id="descriptionInput" placeholder="Введите описание">
+                <input name="description" value="{{ $architect->description }}" class="form-control" id="descriptionInput" placeholder="Введите описание">
                 @error('description')
-                <span class="red">{{ $message }}</span>
+                    <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
