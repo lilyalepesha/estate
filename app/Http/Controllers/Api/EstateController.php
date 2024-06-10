@@ -21,6 +21,7 @@ final class EstateController extends Controller
     public function index(Request $request)
     {
         $estates = Estate::query()
+            ->where('verified', '=', true)
             ->selectRaw(
                 '
                     estates.id as id,

@@ -1,0 +1,154 @@
+.architect__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.architect__item {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    column-gap: 5rem;
+}
+
+.architect__image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    img {
+        width: 25rem;
+        height: 30rem;
+    }
+}
+
+.architect__image-title {
+    font-weight: bold;
+    color: $white;
+    font-size: 3.3rem;
+    text-align: center;
+}
+
+.architect__stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p {
+        color: $blue;
+        font-weight: bold;
+        font-size: 1.8rem;
+        margin-left: 3rem;
+        text-align: center;
+    }
+}
+
+.architect__content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: $white;
+    flex-direction: column;
+    &-title {
+        color: $blue;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    &-description {
+        color: $white;
+        line-height: 180%;
+        max-width: 80rem;
+    }
+}
+
+.goods__items-title {
+    padding-top: 10rem;
+    font-size: 3.2rem;
+    font-weight: bold;
+    color: $blue;
+    margin-bottom: 5rem;
+}
+
+.goods__items {
+    padding-bottom: 10rem;
+}
+
+.architect__comment {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 8rem;
+    textarea {
+        margin: 4rem 0;
+        padding: 2rem 3rem;
+        border: none;
+        outline: none;
+        background-color: $dark-gray;
+        color: $white;
+    }
+    button {
+        background-color: $blue;
+        outline: none;
+        border: none;
+        padding: 1.3rem 2.7rem;
+        color: $white;
+        font-weight: bold;
+        border-radius: 1.6rem;
+        transition: all 0.3s ease-out;
+        &:hover {
+            background-color: darken($blue, 20%);
+        }
+     }
+}
+
+.architect__comment-title {
+    color: $white;
+    font-weight: bold;
+    font-size: 2.4rem;
+    margin-bottom: 4rem;
+}
+
+.comments__items {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    justify-content: flex-start;
+    flex-direction: column;
+    color: $white;
+}
+
+.comment__item-title {
+    display: flex;
+    img {
+        width: 3.2rem;
+
+    }
+    p {
+        line-height: 0;
+        font-weight: bold;
+        font-size: 2.4rem;
+    }
+}
+
+.comment__item {
+    row-gap: 1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-bottom: 15rem;
+}
+
+.comments__items-title {
+    color: $blue;
+    font-weight: bold;
+    font-size: 3.6rem;
+    margin-bottom: 4rem;
+}
+
+.comment__item-text {
+    margin-top: 2rem;
+    max-width: 80%;
+    line-height: 180%;
+}

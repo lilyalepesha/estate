@@ -1495,10 +1495,234 @@ input[type=file]::file-selector-button:active {
   font-size: 3rem;
 }
 
+.architects__items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.architects__item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: #17191C;
+  border-radius: 5rem;
+  padding: 3rem 2.5rem;
+  flex-direction: column;
+  border: 1px solid transparent;
+  height: auto;
+  transition: all 0.3s ease-out;
+}
+@media (any-hover: hover) {
+  .architects__item:hover {
+    border: 1px solid #1DAEFF;
+  }
+}
+.architects__item-image img {
+  width: 30rem;
+  height: 21.5rem;
+}
+
+.architects__content {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+.architects__content-description {
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 30rem;
+  white-space: wrap;
+  line-height: 180%;
+}
+
+.architects__content-name {
+  font-weight: bold;
+}
+
+.architect__container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.architect__item {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  -moz-column-gap: 5rem;
+       column-gap: 5rem;
+}
+
+.architect__image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem;
+}
+.architect__image img {
+  width: 25rem;
+  height: 30rem;
+}
+
+.architect__image-title {
+  font-weight: bold;
+  color: white;
+  font-size: 3.3rem;
+  text-align: center;
+}
+
+.architect__stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.architect__stars p {
+  color: #1DAEFF;
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-left: 3rem;
+  text-align: center;
+}
+
+.architect__content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: white;
+  flex-direction: column;
+}
+.architect__content-title {
+  color: #1DAEFF;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.architect__content-description {
+  color: white;
+  line-height: 180%;
+  max-width: 80rem;
+}
+
+.goods__items-title {
+  padding-top: 10rem;
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: #1DAEFF;
+  margin-bottom: 5rem;
+}
+
+.goods__items {
+  padding-bottom: 10rem;
+}
+
+.architect__comment {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-bottom: 8rem;
+}
+.architect__comment textarea {
+  margin: 4rem 0;
+  padding: 2rem 3rem;
+  border: none;
+  outline: none;
+  background-color: #17191C;
+  color: white;
+}
+.architect__comment button {
+  background-color: #1DAEFF;
+  outline: none;
+  border: none;
+  padding: 1.3rem 2.7rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 1.6rem;
+  transition: all 0.3s ease-out;
+}
+.architect__comment button:hover {
+  background-color: #0075b6;
+}
+
+.architect__comment-title {
+  color: white;
+  font-weight: bold;
+  font-size: 2.4rem;
+  margin-bottom: 4rem;
+}
+
+.comments__items {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: white;
+}
+
+.comment__item-title {
+  display: flex;
+}
+.comment__item-title img {
+  width: 3.2rem;
+}
+.comment__item-title p {
+  line-height: 0;
+  font-weight: bold;
+  font-size: 2.4rem;
+}
+
+.comment__item {
+  row-gap: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-bottom: 15rem;
+}
+
+.comments__items-title {
+  color: #1DAEFF;
+  font-weight: bold;
+  font-size: 3.6rem;
+  margin-bottom: 4rem;
+}
+
+.comment__item-text {
+  margin-top: 2rem;
+  max-width: 80%;
+  line-height: 180%;
+}
+
 body {
   background-color: #00080d !important;
 }
 
 a {
   text-decoration: none !important;
+}
+
+.goods__send-order {
+  margin-top: 5.3rem;
+}
+.goods__send-order button {
+  background-color: #1DAEFF;
+  padding: 1.3rem 2.7rem;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  transition: all 0.3s ease-out;
+  border-radius: 1.6rem;
+}
+.goods__send-order button:hover {
+  background-color: #0075b6;
 }

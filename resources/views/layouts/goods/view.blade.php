@@ -1,4 +1,5 @@
 <section class="best">
+    <h1 style="text-align: center; color: white; font-weight: bold">{{ $project->name }}</h1>
     <div class="container best__container">
         <div class="best__image-wrapper">
             @if(!empty($project->main_image))
@@ -29,6 +30,11 @@
                 {{ $project->description }}
             </p>
         </div>
+        <form class="goods__send-order" action="#!">
+            <input type="hidden" value="{{ $project->name }}">
+
+            <button type="submit">Оформить заказ</button>
+        </form>
     </div>
     <div id="myModal" class="modal">
         <span class="close">&times;</span>

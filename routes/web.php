@@ -14,6 +14,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +45,7 @@ Route::as('register.store')->post('/register/store', [RegisterController::class,
 Route::as('login.store')->post('/login/store', [LoginController::class, '__invoke']);
 Route::as('logout')->get('/logout', [LogoutController::class, 'logout']);
 
-Route::as('architect.index')->get('architect', function () {
+Route::as('architect.register')->get('architect', function () {
     return view('architect.register');
 });
 
@@ -59,18 +60,18 @@ Route::middleware(['access'])->as('admin.index')->get('admin', function () {
 
 Route::middleware(['access'])->resource('users', UserController::class);
 
-Route::middleware('access')->get('/architects', [ArchitectController::class, 'index'])->name('admin.architects.index');
-Route::middleware('is_admin')->get('/architects/create', [ArchitectController::class, 'create'])->name('admin.architects.create');
-Route::middleware('is_admin')->post('/architects', [ArchitectController::class, 'store'])->name('admin.architects.store');
-Route::middleware('is_admin')->get('/architects/{architect}', [ArchitectController::class, 'show'])->name('admin.architects.show');
+Route::middleware('access')->get('/architects', [\App\Http\Controllers\Admin\ArchitectController::class, 'index'])->name('admin.architects.index');
+Route::middleware('is_admin')->get('/architects/create', [\App\Http\Controllers\Admin\ArchitectController::class, 'create'])->name('admin.architects.create');
+Route::middleware('is_admin')->post('/architects', [\App\Http\Controllers\Admin\ArchitectController::class, 'store'])->name('admin.architects.store');
+Route::middleware('is_admin')->get('/architects/{architect}', [\App\Http\Controllers\Admin\ArchitectController::class, 'show'])->name('admin.architects.show');
 Route::middleware('access')
-    ->get('/architects/{architect}/edit', [ArchitectController::class, 'edit'])
+    ->get('/architects/{architect}/edit', [\App\Http\Controllers\Admin\ArchitectController::class, 'edit'])
     ->name('admin.architects.edit');
 Route::middleware('access')
-    ->patch('/architects/{architect}', [ArchitectController::class, 'update'])
+    ->patch('/architects/{architect}', [\App\Http\Controllers\Admin\ArchitectController::class, 'update'])
     ->name('admin.architects.update');
 Route::middleware('is_admin')
-    ->delete('/architects/{architect}', [ArchitectController::class, 'destroy'])->name('admin.architects.destroy');
+    ->delete('/architects/{architect}', [\App\Http\Controllers\Admin\ArchitectController::class, 'destroy'])->name('admin.architects.destroy');
 
 Route::middleware('is_admin')->prefix('admin')->as('admin')->resource('region', RegionController::class);
 Route::middleware('access')->prefix('admin')->as('admin')->resource('project', ProjectController::class);
@@ -88,13 +89,6 @@ Route::as('goods.')->prefix('goods')->controller(GoodsController::class)->group(
 Route::middleware('is_admin')->group(function () {
     Route::resource('property', PropertyController::class);
 });
-
-Route::as('creators.')
-    ->prefix('creators')
-    ->controller(ArchitectController::class)
-    ->group(function () {
-        Route::get('index', 'list')->name('list');
-    });
 
 Route::as('agent.')
     ->prefix('agent')
@@ -115,4 +109,10 @@ Route::as('admin.')->prefix('admin')->group(function (){
    Route::resource('admin/estate', \App\Http\Controllers\Admin\EstateController::class)->except('show');
 });
 
-Route::get('favourite',[FavouriteController::class, 'index'])->name('favourite.index');
+Route::get('favourite', [FavouriteController::class, 'index'])->name('favourite.index');
+
+Route::resource('architect', ArchitectController::class);
+
+Route::as('review.')->prefix('review')->controller(ReviewController::class)->group(function (){
+   Route::as('store')->post('/', 'store');
+});

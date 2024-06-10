@@ -11,6 +11,7 @@ use App\Models\Estate;
 use App\Models\EstateProperty;
 use App\Models\ObjectImage;
 use App\Models\Property;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class EstateController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.estate.index', [
             'estates' => Estate::query()->when(Auth::user()->role == RoleEnum::REGISTERED->value,

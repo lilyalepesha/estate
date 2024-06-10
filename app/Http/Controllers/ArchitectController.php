@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreArchitectRequest;
-use App\Http\Requests\UpdateArchitectRequest;
+use App\Enums\ObjectEnum;
 use App\Models\Architect;
-use App\Models\User;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Foundation\Application;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Illuminate\View\View;
+use App\Models\ObjectImage;
+use App\Models\Project;
+use App\Models\Review;
+use Illuminate\Http\Request;
 
 class ArchitectController extends Controller
 {
@@ -20,7 +16,7 @@ class ArchitectController extends Controller
      */
     public function index()
     {
-        return view('admin.architects.index', ['architects' => Architect::query()->paginate(30)]);
+        return view('architect.index', ['architects' => Architect::query()->paginate(20)]);
     }
 
     /**
@@ -28,83 +24,69 @@ class ArchitectController extends Controller
      */
     public function create()
     {
-        return view('admin.architects.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param StoreArchitectRequest $request
-     * @return RedirectResponse
      */
-    public function store(StoreArchitectRequest $request)
+    public function store(Request $request)
     {
-        $name = Str::uuid() . '.' . $request->file('image')->extension();
+        //
+    }
 
-        Storage::putFileAs( 'public/architects/avatars/', $request->file('image'), $name);
+    /**
+     * Display the specified resource.
+     */
+    public function show(int $id)
+    {
+        $projects = Project::query()->where('architect_id', '=', $id)->get();
 
-        Architect::query()->create([
-            'name' => $request->string('name'),
-            'last_name' => $request->string('last_name'),
-            'father_name' => $request->string('father_name'),
-            'description' => $request->string('description'),
-            'email' => $request->string('email'),
-            'password' => $request->string('password'),
-            'experience' => $request->string('experience'),
-            'verified' => $request->boolean('verified'),
-            'avatar_url' => 'architects/avatars/' . $name,
+        $projects->transform(function ($item) {
+            $images = ObjectImage::query()
+                ->where('type', '=', ObjectEnum::PROJECT->value)
+                ->where('object_id', '=', $item?->id)
+                ->first();
+
+            if (empty($images)) {
+                $item->setAttribute('image_url', asset('images/default/images.png'));
+            } else {
+                $item->setAttribute('image_url', asset('storage/' . $images->url));
+            }
+
+            return $item;
+        });
+
+        return view('architect.show', [
+            'architect' => Architect::query()->whereKey($id)->first(),
+            'projects' => $projects->paginate(20),
+            'comments' => Review::query()
+                ->where('architect_id', '=', $id)
+                ->paginate(20)
         ]);
-
-        return redirect()->route('admin.index')->with('success', 'Успешно создан');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Architect $architect)
+    public function edit(string $id)
     {
-        return view('admin.architects.edit', ['architect' => $architect]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateArchitectRequest $request, Architect $architect): RedirectResponse
+    public function update(Request $request, string $id)
     {
-        if ($request->has('image')) {
-            $name = Str::uuid() . '.' . $request->file('image')->extension();
-
-            Storage::putFileAs( 'public/architects/avatars/', $request->file('image'), $name);
-
-            $architect->update([
-                'avatar_url' => 'architects/avatars/' . $name,
-            ]);
-        }
-
-        $architect->update([
-            'name' => $request->string('name'),
-            'last_name' => $request->string('last_name'),
-            'father_name' => $request->string('father_name'),
-            'description' => $request->string('description'),
-            'email' => $request->string('email'),
-            'password' => $request->string('password'),
-            'experience' => $request->string('experience'),
-            'verified' => $request->boolean('verified'),
-        ]);
-
-        return redirect()->route('admin.index')->with('success', 'Успешно отредактирован');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Architect $architect)
+    public function destroy(string $id)
     {
-        $architect->delete();
-
-        return redirect()->route('admin.index')->with('success', 'Успешно удалён');
-    }
-    public function list()
-    {
-        return view('architect.list');
+        //
     }
 }

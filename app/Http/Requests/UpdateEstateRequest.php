@@ -18,6 +18,10 @@ class UpdateEstateRequest extends FormRequest
         $this->merge([
             'user_id' => Auth::id(),
         ]);
+
+        $this->mergeIfMissing([
+            'verified' => false
+        ]);
     }
 
     /**
@@ -39,6 +43,7 @@ class UpdateEstateRequest extends FormRequest
             'images' => ['nullable', 'array'],
             'images.*' => ['required', 'file', 'image', 'max:10000'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
+            'verified' => ['nullable', 'boolean'],
         ];
     }
 

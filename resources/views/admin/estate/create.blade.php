@@ -56,10 +56,22 @@
                 <label for="exampleInputEmail1">Жилая площадь</label>
                 <input name="living_space" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
                 @error('living_space')
-                <span class="red">{{ $message }}</span>
+                    <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
+            @can('is_admin')
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Статус</label>
+                    <select style="outline: none; width: 100%" class="form-select" aria-label="Подвердить" name="verified">
+                        <option selected value="0">Не подверждён</option>
+                        <option value="1">Подверждён</option>
+                    </select>
+                    @error('verified')
+                    <span class="red">{{ $message }}</span>
+                    @enderror
+                </div>
+            @endcan
 
             <div class="mb-3">
                 <label for="image" class="form-label">Выберите изображения</label>

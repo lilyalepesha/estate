@@ -11,26 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('estates', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->longText('description')->nullable();
-            $table->decimal('price');
-            $table->decimal('total_area');
-            $table->decimal('living_space');
-            $table->integer('type');
+            $table->longText('text');
 
-            $table->foreignId('region_id')
+            $table->foreignId('architect_id')
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
             $table->foreignId('user_id')
-                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->boolean('verified')->default(false);
+            $table->integer('rating')->nullable();
 
             $table->timestamps();
         });
@@ -41,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('estates');
+        Schema::dropIfExists('reviews');
     }
 };

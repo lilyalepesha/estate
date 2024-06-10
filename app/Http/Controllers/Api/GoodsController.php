@@ -114,4 +114,39 @@ final class GoodsController extends Controller
             ]);
         }
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function check(Request $request): JsonResponse
+    {
+        try {
+            if (
+                $request->filled('user_type')
+                && $request->filled('favourite_type')
+                && $request->filled('favourite_id')
+                && $request->filled('user_id')
+            ) {
+                $favourite = Favourite::query()
+                    ->where('user_type', $request->string('user_type'))
+                    ->where('favourite_type', $request->integer('favourite_type'))
+                    ->where('favourite_id', $request->integer('favourite_id'))
+                    ->where('user_id', $request->integer('user_id'))
+                    ->exists();
+            }
+
+            return response()->json([
+                'success' => true,
+                'data' => $favourite
+            ]);
+        } catch (\Throwable $e) {
+            report($e);
+
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 }

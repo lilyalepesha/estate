@@ -22,7 +22,8 @@ class Estate extends Model
         'type',
         'image_url',
         'region_id',
-        'user_id'
+        'user_id',
+        'verified'
     ];
 
     /**

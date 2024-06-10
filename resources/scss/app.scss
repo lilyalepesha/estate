@@ -13,6 +13,8 @@
 @import "app/architect/register";
 @import "app/layouts/best";
 @import "app/layouts/agent";
+@import "app/architect/index";
+@import "app/architect/show";
 
 body {
     background-color: #00080DFF !important;
@@ -20,4 +22,21 @@ body {
 
 a {
     text-decoration: none !important;
+}
+
+.goods__send-order {
+    margin-top: 5.3rem;
+    button {
+        background-color: $blue;
+        padding: 1.3rem 2.7rem;
+        border: none;
+        color: $white;
+        font-size: 2rem;
+        font-weight: bold;
+        transition: all 0.3s ease-out;
+        border-radius: 1.6rem;
+        &:hover {
+            background-color: darken($blue, 20%);
+        }
+    }
 }

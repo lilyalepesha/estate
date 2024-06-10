@@ -1,0 +1,52 @@
+.architects__items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.architects__item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: $dark-gray;
+    border-radius: 5rem;
+    padding: 3rem 2.5rem;
+    flex-direction: column;
+    border: 1px solid transparent;
+    height: auto;
+    transition: all 0.3s ease-out;
+    @media (any-hover: hover) {
+        &:hover {
+            border: 1px solid $blue;
+        }
+    }
+    &-image {
+        img {
+            width: 30rem;
+            height: 21.5rem;
+        }
+    }
+}
+
+.architects__content {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: $white;
+}
+
+.architects__content-description {
+    font-size: 1.2rem;
+    text-align: center;
+    max-width: 30rem;
+    white-space: wrap;
+    line-height: 180%;
+}
+
+.architects__content-name {
+    font-weight: bold;
+}

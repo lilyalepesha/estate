@@ -17,6 +17,10 @@ class StoreEstateRequest extends FormRequest
         $this->merge([
             'user_id' => Auth::id(),
         ]);
+
+        $this->mergeIfMissing([
+            'verified' => false,
+        ]);
     }
 
     /**
@@ -26,6 +30,7 @@ class StoreEstateRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'description' => ['required', 'string', 'min:3', 'max:1000'],
             'region_id' => ['required', 'integer', 'exists:regions,id'],
@@ -38,6 +43,7 @@ class StoreEstateRequest extends FormRequest
             'images' => ['nullable', 'array'],
             'images.*' => ['required', 'file', 'image', 'max:10000'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
+            'verified' => ['nullable', 'bool']
         ];
     }
 

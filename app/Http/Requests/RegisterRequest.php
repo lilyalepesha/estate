@@ -17,7 +17,7 @@ class RegisterRequest extends FormRequest
         return [
             'email' => ['required', 'email', 'unique:users', 'max:50'],
             'password' => ['required', 'confirmed', 'min:8', 'max:50'],
-            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
+            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048']
         ];
     }
 

@@ -21,6 +21,7 @@
             <th scope="col">Тип</th>
             <th scope="col">Регион</th>
             <th scope="col">Область</th>
+            <th scope="col">Подверждён</th>
             <th scope="col">Дата создания</th>
             <th scope="col">Редактировать</th>
             <th scope="col">Удалить</th>
@@ -36,6 +37,7 @@
                 <td>{{ \App\Enums\ProjectTypeEnum::tryFrom($estate->type)?->label() }}</td>
                 <td> {{ $estate->region->name }}</td>
                 <td>{{ $estate->region->area }}</td>
+                <td>{{ $estate->verified ? 'Да' : 'Нет' }}</td>
                 <td>{{ $estate->created_at }}</td>
                 <td>
                     <form action="{{route('admin.estate.edit', $estate->id)}}" method="GET">
