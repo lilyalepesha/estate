@@ -62,7 +62,11 @@ class ArchitectController extends Controller
             'projects' => $projects->paginate(20),
             'comments' => Review::query()
                 ->where('architect_id', '=', $id)
-                ->paginate(20)
+                ->paginate(20),
+            'rating' => Review::query()
+                ->where('architect_id', '=', $id)
+                ->pluck('rating')
+                ->avg()
         ]);
     }
 

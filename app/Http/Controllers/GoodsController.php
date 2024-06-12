@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Enums\FavouriteType;
 use App\Enums\ObjectEnum;
 use App\Enums\UserTypeEnum;
+use App\Models\Architect;
 use App\Models\EstateProperty;
 use App\Models\ObjectImage;
+use App\Models\Order;
 use App\Models\Project;
+use App\Notifications\SendOrderNotification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 
 final class GoodsController extends Controller
@@ -106,5 +111,25 @@ final class GoodsController extends Controller
         } catch (\Throwable $e) {
             return redirect()->route('main');
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function sendOrder(Request $request): RedirectResponse
+    {
+        $email = Architect::query()->whereKey($request->integer('architect_id'))->value('email');
+
+        Order::query()->create([
+            'user_id' => Auth::id(),
+            'project_id' => $request->integer('project_id'),
+        ]);
+
+        $name = Project::query()->firstWhere('id', '=', $request->integer('project_id'))?->name;
+
+        Notification::route('mail', $email)->notify(new SendOrderNotification(Auth::user()->email, $name));
+
+        return redirect()->back()->with('success', 'Спасибо за заказ!');
     }
 }

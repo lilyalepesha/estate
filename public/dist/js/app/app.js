@@ -49,6 +49,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_app_script_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/app/script.js */ "./resources/js/app/script.js");
 /* harmony import */ var _js_app_image_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/app/image.js */ "./resources/js/app/image.js");
 /* harmony import */ var _js_app_burger_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../js/app/burger.js */ "./resources/js/app/burger.js");
+/* harmony import */ var _js_app_rating_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../js/app/rating.js */ "./resources/js/app/rating.js");
+/* harmony import */ var _js_app_star_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../js/app/star.js */ "./resources/js/app/star.js");
+
+
 
 
 
@@ -110,6 +114,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /***/ }),
 
+/***/ "./resources/js/app/rating.js":
+/*!************************************!*\
+  !*** ./resources/js/app/rating.js ***!
+  \************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+window.onload = function () {
+  var stars = document.querySelectorAll('.architect__stars svg');
+  var ratingInput = document.querySelector('#rating');
+  console.log(ratingInput);
+  stars.forEach(function (star) {
+    star.addEventListener('click', function () {
+      var value = this.getAttribute('data-value');
+      ratingInput.value = value;
+      highlightStars(value);
+    });
+    star.addEventListener('mouseover', function () {
+      var value = this.getAttribute('data-value');
+      highlightStars(value);
+    });
+    star.addEventListener('mouseout', function () {
+      var value = ratingInput.value;
+      highlightStars(value);
+    });
+  });
+  function highlightStars(value) {
+    stars.forEach(function (star) {
+      if (star.getAttribute('data-value') <= value) {
+        star.classList.add('active');
+      } else {
+        star.classList.remove('active');
+      }
+    });
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/app/script.js":
 /*!************************************!*\
   !*** ./resources/js/app/script.js ***!
@@ -151,6 +194,29 @@ document.addEventListener('DOMContentLoaded', function () {
   showMoreButton.addEventListener('click', function () {
     loadData(true);
   });
+});
+
+/***/ }),
+
+/***/ "./resources/js/app/star.js":
+/*!**********************************!*\
+  !*** ./resources/js/app/star.js ***!
+  \**********************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+document.addEventListener('DOMContentLoaded', function () {
+  var starsContainer = document.querySelector('.architect__image-stars');
+  var stars = document.querySelectorAll('.star-container');
+  var rating = parseFloat(starsContainer.getAttribute('data-rating'));
+  highlightStars(rating);
+  function highlightStars(value) {
+    stars.forEach(function (star) {
+      var starValue = parseFloat(star.getAttribute('data-value'));
+      var fillWidth = value >= starValue ? 100 : Math.max(0, (value - (starValue - 1)) * 100);
+      star.style.setProperty('--clip-width', "".concat(fillWidth, "%"));
+    });
+  }
 });
 
 /***/ }),

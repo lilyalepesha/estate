@@ -193,3 +193,36 @@ footer {
         background-color: darken($blue, 10%);
     }
 }
+
+.star {
+    cursor: pointer;
+    fill: #8F90A6;
+    transition: fill 0.2s;
+}
+
+.star:hover,
+.star.active {
+    fill: #FFD700; /* Золотой цвет для активных звезд */
+}
+
+.star-container {
+    position: relative;
+    display: inline-block;
+    width: 33px; /* Ширина звезды */
+    height: 31px; /* Высота звезды */
+}
+
+.star-container svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.star-container .star-bg {
+    fill: #8F90A6; /* Цвет неактивной звезды */
+}
+
+.star-container .star-fg {
+    fill: #FFD700; /* Цвет активной звезды */
+    clip-path: polygon(0 0, var(--clip-width, 100%) 0, var(--clip-width, 100%) 100%, 0 100%);
+}

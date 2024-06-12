@@ -84,6 +84,7 @@ Route::as('architect.login.index')->get('architect/login', function () {
 Route::as('goods.')->prefix('goods')->controller(GoodsController::class)->group(function () {
     Route::get('{id}', 'view')->name('view');
     Route::get('/', 'index')->name('index');
+    Route::post('/send', 'sendOrder')->name('send');
 });
 
 Route::middleware('is_admin')->group(function () {

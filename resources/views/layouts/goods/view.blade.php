@@ -30,11 +30,14 @@
                 {{ $project->description }}
             </p>
         </div>
-        <form class="goods__send-order" action="#!">
-            <input type="hidden" value="{{ $project->name }}">
-
-            <button type="submit">Оформить заказ</button>
-        </form>
+        @auth
+            <form method="POST" class="goods__send-order" action="{{ route('goods.send') }}">
+                @csrf
+                <input name="project_id" type="hidden" value="{{ $project->id }}">
+                <input name="architect_id" type="hidden" value="{{ $project->architect_id }}">
+                <button type="submit">Оформить заказ</button>
+            </form>
+        @endauth
     </div>
     <div id="myModal" class="modal">
         <span class="close">&times;</span>

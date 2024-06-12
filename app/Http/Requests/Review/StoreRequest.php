@@ -14,7 +14,6 @@ class StoreRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'rating' => 3,
             'user_id' => Auth::id(),
         ]);
     }
@@ -33,4 +32,27 @@ class StoreRequest extends FormRequest
             'architect_id' => ['required', 'integer', 'exists:architects,id'],
         ];
     }
+
+    /**
+     * Get the custom messages for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'text.required' => 'Пожалуйста, введите текст комментария.',
+            'text.string' => 'Текст комментария должен быть строкой.',
+            'rating.required' => 'Пожалуйста, укажите рейтинг.',
+            'rating.integer' => 'Рейтинг должен быть числом.',
+            'rating.min' => 'Рейтинг не может быть меньше 1.',
+            'rating.max' => 'Рейтинг не может быть больше 5.',
+            'user_id.integer' => 'Идентификатор пользователя должен быть числом.',
+            'user_id.exists' => 'Указанный пользователь не существует.',
+            'architect_id.required' => 'Пожалуйста, укажите идентификатор архитектора.',
+            'architect_id.integer' => 'Идентификатор архитектора должен быть числом.',
+            'architect_id.exists' => 'Указанный архитектор не существует.',
+        ];
+    }
+
 }

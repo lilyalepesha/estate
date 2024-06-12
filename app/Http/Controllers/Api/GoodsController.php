@@ -31,7 +31,6 @@ final class GoodsController extends Controller
                     regions.name as region_name,
                     regions.street as street'
                 )
-                ->join('regions', 'projects.region_id', '=', 'regions.id')
                 ->when($request->filled('type'),
                     fn(Builder $query) => $query->where('type', '=', $request->integer('type'))
                 )->when($request->filled('region'),

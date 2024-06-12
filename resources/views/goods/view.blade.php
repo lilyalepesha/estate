@@ -15,7 +15,7 @@
     <title>Недвижимость</title>
 </head>
 <body>
-
+@include('layouts.message')
 @include('layouts.header')
 @include('layouts.goods.view')
 @include('layouts.footer')
