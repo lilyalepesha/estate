@@ -21,6 +21,6 @@ class ArchitectLoginController extends Controller
             return redirect()->back()->with('success', 'Вы успешно вошли в аккаунт!');
         }
 
-        return redirect()->back()->with('danger', 'Вы не зарегистрированы');
+        return redirect()->route('main')->with('danger', 'Вы не зарегистрированы');
     }
 }

@@ -35,12 +35,32 @@
 
             <div class="form-group">
                 <label for="architectEmailInput">Регион</label>
-                <select name="region_id" class="form-control" id="architectEmailInput">
-                    @foreach (\App\Models\Region::query()->pluck('name', 'id') as $id => $name)
-                        <option value="{{ $id }}">{{ $name }}</option>
-                    @endforeach
-                </select>
-                @error('region_id')
+                <input value="{{ $estate->region?->name }}" name="region" class="form-control" id="exampleInputEmail1" placeholder="Введите регион">
+                @error('region')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="architectEmailInput">Область</label>
+                <input value="{{ $estate->region?->area }}" name="area" class="form-control" id="exampleInputEmail1" placeholder="Введите область">
+                @error('area')
+                <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="architectEmailInput">Улица</label>
+                <input value="{{ $estate->region?->street }}" name="street" class="form-control" id="exampleInputEmail1" placeholder="Введите улицу">
+                @error('street')
+                <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="architectEmailInput">Дом</label>
+                <input value="{{ $estate->region?->house }}" name="house" class="form-control" id="exampleInputEmail1" placeholder="Введите дом">
+                @error('house')
                 <span class="red">{{ $message }}</span>
                 @enderror
             </div>
@@ -81,10 +101,10 @@
                     <label class="input-group-text" for="image">Загрузить</label>
                 </div>
                 @error('images.*')
-                <span class="red">{{ $message }}</span>
+                    <span class="red">{{ $message }}</span>
                 @enderror
                 @error('images')
-                <span class="red">{{ $message }}</span>
+                    <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 

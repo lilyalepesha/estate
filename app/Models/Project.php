@@ -16,7 +16,7 @@ class Project extends Model
         'region_id',
         'type',
         'area',
-        'price_per_meter',
+        'price',
         'image_url',
     ];
 

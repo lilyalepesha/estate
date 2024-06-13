@@ -31,6 +31,6 @@ class RegisterController extends Controller
         /** @var User $user */
         $user->notify(new RegisterNotification);
 
-        return redirect()->back()->with('success', 'Вы успешно зарегистрированы');
+        return redirect()->route('main')->with('success', 'Вы успешно зарегистрированы');
     }
 }

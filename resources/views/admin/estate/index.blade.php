@@ -21,6 +21,8 @@
             <th scope="col">Тип</th>
             <th scope="col">Регион</th>
             <th scope="col">Область</th>
+            <th scope="col">Улица</th>
+            <th scope="col">Дом</th>
             <th scope="col">Подверждён</th>
             <th scope="col">Дата создания</th>
             <th scope="col">Редактировать</th>
@@ -37,6 +39,8 @@
                 <td>{{ \App\Enums\ProjectTypeEnum::tryFrom($estate->type)?->label() }}</td>
                 <td> {{ $estate->region->name }}</td>
                 <td>{{ $estate->region->area }}</td>
+                <td>{{ $estate->region->street }}</td>
+                <td>{{ $estate->region->house }}</td>
                 <td>{{ $estate->verified ? 'Да' : 'Нет' }}</td>
                 <td>{{ $estate->created_at }}</td>
                 <td>

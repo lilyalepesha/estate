@@ -43,8 +43,8 @@
                             <p>Площадь {{ $project->area }} м<sup>2</sup></p>
                         </div>
                         <div class="goods__item-cost goods__cost">
-                            <p>Цена за м<sup>2</sup></p>
-                            <div class="goods__cost-text">{{ $project->price_per_meter }}</div>
+                            <p>Цена</p>
+                            <div class="goods__cost-text">{{ $project->price }} BYN</div>
                         </div>
                     </div>
                 </a>

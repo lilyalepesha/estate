@@ -1,12 +1,11 @@
 <section class="agent">
     <div class="agent__container container">
-        @foreach($agents as $agent)
+        @forelse($agents as $agent)
             <div class="agent__content">
                 <div class="agent__content-wrapper">
                     <div class="agent__content-avatar">
-                        @if(!\Illuminate\Support\Facades\Storage::exists('storage/' . $agent->avatar_url))
-                            <img src="{{ asset('storage/' . $agent->avatar_url) }}"
-                                 alt="Avatar">
+                        @if(\Illuminate\Support\Facades\Storage::exists('storage/' . $agent->avatar_url))
+                            <img src="{{ asset('storage/' . $agent->avatar_url) }}" alt="Avatar">
                         @else
                             <img src="{{ asset('images/default/agent/user.png') }}" alt="Default">
                         @endif
@@ -38,7 +37,9 @@
                     </p>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p style="color: white; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: bold">Список пуст</p>
+        @endforelse
         <div class="d-flex justify-content-center mt-3">
             {{ $agents->links() }}
         </div>

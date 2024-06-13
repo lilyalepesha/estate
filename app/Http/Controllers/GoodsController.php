@@ -34,7 +34,7 @@ final class GoodsController extends Controller
                 '
                     projects.id as id,
                     projects.area as area,
-                    projects.price_per_meter as price'
+                    projects.price as price'
             )
             ->when(\request()->filled('name'),
                 fn(Builder $query) => $query->where('projects.name', 'like', '%' . \request()->input('name') . '%'))

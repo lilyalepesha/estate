@@ -33,17 +33,20 @@ class UpdateEstateRequest extends FormRequest
     {
         return [
             'description' => ['required', 'string', 'min:3', 'max:1000'],
-            'region_id' => ['required', 'integer', 'exists:regions,id'],
-            'price' => ['required', 'string', 'min:1'],
+            'region' => ['required', 'string'],
+            'house' => ['required', 'string'],
+            'area' => ['required', 'string'],
+            'street' => ['required', 'string'],
+            'price' => ['required', 'integer', 'min:1'],
             'type' => ['required', 'integer', Rule::enum(ProjectTypeEnum::class)],
-            'total_area' => ['required', 'string', 'min:1'],
-            'living_space' => ['required', 'string', 'min:1'],
+            'total_area' => ['required', 'integer', 'min:1'],
+            'living_space' => ['required', 'integer', 'min:1'],
             'properties' => ['nullable', 'array'],
             'properties.*' => ['required', 'string', 'exists:properties,value'],
             'images' => ['nullable', 'array'],
-            'images.*' => ['required', 'file', 'image', 'max:10000'],
+            'images.*' => ['required', 'file', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10000'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            'verified' => ['nullable', 'boolean'],
+            'verified' => ['nullable', 'bool']
         ];
     }
 
@@ -56,7 +59,10 @@ class UpdateEstateRequest extends FormRequest
     {
         return [
             'description' => 'описание',
-            'region_id' => 'регион',
+            'region' => 'регион',
+            'house' => 'дом',
+            'area' => 'район',
+            'street' => 'улица',
             'price' => 'цена',
             'type' => 'тип проекта',
             'total_area' => 'общая площадь',
@@ -80,9 +86,14 @@ class UpdateEstateRequest extends FormRequest
             'description.string' => 'Поле :attribute должно быть строкой.',
             'description.min' => 'Поле :attribute должно содержать как минимум :min символов.',
             'description.max' => 'Поле :attribute не должно превышать :max символов.',
-            'region_id.required' => 'Поле :attribute обязательно для заполнения.',
-            'region_id.integer' => 'Поле :attribute должно быть целым числом.',
-            'region_id.exists' => 'Выбранный :attribute не существует.',
+            'region.required' => 'Поле :attribute обязательно для заполнения.',
+            'region.string' => 'Поле :attribute должно быть строкой.',
+            'house.required' => 'Поле :attribute обязательно для заполнения.',
+            'house.string' => 'Поле :attribute должно быть строкой.',
+            'area.required' => 'Поле :attribute обязательно для заполнения.',
+            'area.string' => 'Поле :attribute должно быть строкой.',
+            'street.required' => 'Поле :attribute обязательно для заполнения.',
+            'street.string' => 'Поле :attribute должно быть строкой.',
             'price.required' => 'Поле :attribute обязательно для заполнения.',
             'price.integer' => 'Поле :attribute должно быть целым числом.',
             'price.min' => 'Поле :attribute должно быть не менее :min.',
@@ -102,7 +113,12 @@ class UpdateEstateRequest extends FormRequest
             'images.*.required' => 'Поле :attribute обязательно для заполнения.',
             'images.*.file' => 'Поле :attribute должно быть файлом.',
             'images.*.image' => 'Поле :attribute должно быть изображением.',
+            'images.*.mimes' => 'Поле :attribute должно быть файлом одного из следующих типов: :values.',
             'images.*.max' => 'Поле :attribute не должно превышать :max килобайт.',
+            'user_id.required' => 'Поле :attribute обязательно для заполнения.',
+            'user_id.integer' => 'Поле :attribute должно быть целым числом.',
+            'user_id.exists' => 'Выбранный :attribute не существует.',
+            'verified.boolean' => 'Поле :attribute должно быть булевым значением.',
         ];
     }
 }

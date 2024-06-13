@@ -1,7 +1,7 @@
 <section class="architects">
     <div class="architects__container container">
         <div class="architects__items">
-            @foreach($architects as $architect)
+            @forelse($architects as $architect)
                 <a href="{{ route('architect.show', $architect->id) }}">
                     <div class="architects__item">
                         <div class="architects__item-image">
@@ -20,7 +20,9 @@
                         </div>
                     </div>
                 </a>
-            @endforeach
+            @empty
+                <p style="color: white; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: bold">Список пуст</p>
+            @endforelse
         </div>
         <div style="display: flex; justify-content: center; margin-top: 50px">
             {{ $architects->withQueryString()->links() }}

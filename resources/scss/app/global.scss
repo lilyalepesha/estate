@@ -226,3 +226,13 @@ footer {
     fill: #FFD700; /* Цвет активной звезды */
     clip-path: polygon(0 0, var(--clip-width, 100%) 0, var(--clip-width, 100%) 100%, 0 100%);
 }
+
+.blue-button {
+    background-color: $blue;
+    padding: 1.3rem 2.7rem;
+    font-weight: bold;
+    color: $white;
+    &:hover {
+        background-color: darken($blue, 25%);
+    }
+}

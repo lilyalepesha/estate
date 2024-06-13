@@ -76,7 +76,7 @@ final class EstateController extends Controller
                 ->selectRaw(
                     'regions.name as region_name,
                     regions.street as region_street,
-                    projects.price_per_meter as price,
+                    projects.price as price,
                     projects.area as area,
                     projects.id as project_id'
                 )

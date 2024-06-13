@@ -106,7 +106,7 @@ class ProjectController extends Controller
             'name' => $request->string('name'),
             'description' => $request->string('description'),
             'type' => $request->integer('type'),
-            'price_per_meter' => $request->integer('price_per_meter'),
+            'price' => $request->integer('price'),
             'area' => $request->integer('area')
         ]);
 

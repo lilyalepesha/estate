@@ -11,6 +11,7 @@ use App\Models\Estate;
 use App\Models\EstateProperty;
 use App\Models\ObjectImage;
 use App\Models\Property;
+use App\Models\Region;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
@@ -49,7 +50,19 @@ class EstateController extends Controller
      */
     public function store(StoreEstateRequest $request): RedirectResponse
     {
-        $estate = Estate::query()->create($request->validated());
+        $regionId = Region::query()->firstOrCreate([
+            'name' => $request->input('region'),
+            'area' => $request->input('area'),
+            'house' => $request->input('house'),
+            'street' => $request->input('street'),
+        ], [
+            'name' => $request->input('region'),
+            'area' => $request->input('area'),
+            'house' => $request->input('house'),
+            'street' => $request->input('street'),
+        ])?->id;
+
+        $estate = Estate::query()->create($request->merge(['region_id' => $regionId])->toArray());
 
         if (!empty($request->images)) {
             foreach ($request->images as $image) {
@@ -88,7 +101,7 @@ class EstateController extends Controller
     {
         return view('admin.estate.edit', [
             'properties' => Property::query()->pluck('value'),
-            'estate' => $estate
+            'estate' => $estate->load('region')
         ]);
     }
 

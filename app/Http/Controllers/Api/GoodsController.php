@@ -27,7 +27,7 @@ final class GoodsController extends Controller
                     projects.is_favourite as is_favourite,
                     projects.id as id,
                     projects.area as area,
-                    projects.price_per_meter as price,
+                    projects.price as price,
                     regions.name as region_name,
                     regions.street as street'
                 )

@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="estate__item-content estate__content">
                                     <div class="estate__content-info">
                                         <p>${item.region_name}</p>
-                                        <p>${item.area} м<sup>2</sup></p>
+                                        <p>${item.area} BYN</p>
                                     </div>
                                     <h4 class="estate__content-title">${item.region_street}</h4>
                                     <div class="estate__content-cost estate__cost">
-                                        <p>Цена за м<sup>2</sup></p>
+                                        <p>Цена</p>
                                         <div class="estate__cost-text">${item.price}</div>
                                     </div>
                                 </div>

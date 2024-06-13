@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->unique()->nullable();
             $table->string('area')->nullable();
             $table->string('street')->nullable();
+            $table->string('house')->nullable();
             $table->string('image_url')->nullable();
 
             $table->timestamps();

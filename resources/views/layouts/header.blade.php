@@ -44,6 +44,11 @@
                         <a href="{{ route('logout') }}" class="header__list-link">Выйти</a>
                     </div>
                 @endauth
+                @guest
+                    <div class="header__list-item blue-button">
+                        <a href="{{ route('login.index') }}" class="header__list-link">Войти</a>
+                    </div>
+                @endguest
             </div>
         </nav>
         @auth

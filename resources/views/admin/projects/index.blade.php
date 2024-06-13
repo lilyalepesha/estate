@@ -35,7 +35,7 @@
                 <td>{{ $project->architect?->email }}</td>
                 <td>{{ $project->region?->name }}</td>
                 <td>{{ \App\Enums\ProjectTypeEnum::tryFrom($project->type)?->label() }}</td>
-                <td> {{ $project->price_per_meter }}</td>
+                <td> {{ $project->price }}</td>
                 <td> {{ $project->area }} м<sup>2</sup></td>
                 <td>{{ $project->created_at }}</td>
                 <td>

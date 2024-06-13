@@ -22,8 +22,8 @@
 
             <div class="form-group">
                 <label for="exampleInputEmail1">Стоимость</label>
-                <input name="price_per_meter" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
-                @error('price_per_meter')
+                <input name="price" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
+                @error('price')
                 <span class="red">{{ $message }}</span>
                 @enderror
             </div>

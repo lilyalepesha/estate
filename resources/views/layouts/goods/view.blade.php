@@ -1,5 +1,5 @@
 <section class="best">
-    <h1 style="text-align: center; color: white; font-weight: bold">{{ $project->name }}</h1>
+    <h1 style="text-align: center; margin-right: 1250px; color: white; font-weight: bold">{{ $project->name }}</h1>
     <div class="container best__container">
         <div class="best__image-wrapper">
             @if(!empty($project->main_image))

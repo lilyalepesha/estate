@@ -225,6 +225,16 @@ footer {
           clip-path: polygon(0 0, var(--clip-width, 100%) 0, var(--clip-width, 100%) 100%, 0 100%);
 }
 
+.blue-button {
+  background-color: #1DAEFF;
+  padding: 1.3rem 2.7rem;
+  font-weight: bold;
+  color: white;
+}
+.blue-button:hover {
+  background-color: #00649d;
+}
+
 .header__container {
   display: flex;
   align-items: center;
@@ -536,7 +546,7 @@ footer {
 }
 
 .goods__cost-text {
-  font-size: 1.9rem;
+  font-size: 1.4rem;
   color: white;
   background-color: #1DAEFF;
   padding: 1.8rem;

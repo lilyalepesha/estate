@@ -34,13 +34,33 @@
 
             <div class="form-group">
                 <label for="architectEmailInput">Регион</label>
-                <select name="region_id" class="form-control" id="architectEmailInput">
-                    @foreach (\App\Models\Region::query()->pluck('name', 'id') as $id => $name)
-                        <option value="{{ $id }}">{{ $name }}</option>
-                    @endforeach
-                </select>
-                @error('region_id')
-                <span class="red">{{ $message }}</span>
+                <input name="region" class="form-control" id="exampleInputEmail1" placeholder="Введите регион">
+                @error('region')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="architectEmailInput">Область</label>
+                <input name="area" class="form-control" id="exampleInputEmail1" placeholder="Введите область">
+                @error('area')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="architectEmailInput">Улица</label>
+                <input name="street" class="form-control" id="exampleInputEmail1" placeholder="Введите улицу">
+                @error('street')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="architectEmailInput">Дом</label>
+                <input name="house" class="form-control" id="exampleInputEmail1" placeholder="Введите дом">
+                @error('house')
+                    <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 

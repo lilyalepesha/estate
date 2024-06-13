@@ -20,7 +20,7 @@ class UpdateProjectRequest extends FormRequest
             'name' => ['required', 'min:2', 'max:255', 'string'],
             'description' => ['required', 'max:255', 'min:2', 'string'],
             'type' => ['required', 'integer', Rule::enum(ProjectTypeEnum::class)],
-            'price_per_meter' => ['required', 'numeric'],
+            'price' => ['required', 'numeric'],
             'area' => ['required', 'integer'],
             'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,bmp', 'max:5120'],
             'images' => ['nullable', 'array'],
@@ -35,7 +35,7 @@ class UpdateProjectRequest extends FormRequest
             'type' => 'Тип проекта',
             'architect_id' => 'ID архитектора',
             'region_id' => 'ID региона',
-            'price_per_meter' => 'Цена за метр',
+            'price' => 'Цена',
             'area' => 'Площадь',
             'image' => 'Изображение проекта'
         ];
@@ -60,8 +60,8 @@ class UpdateProjectRequest extends FormRequest
             'architect_id.integer' => 'ID архитектора должен быть числом',
             'region_id.required' => 'Укажите ID региона',
             'region_id.integer' => 'ID региона должен быть числом',
-            'price_per_meter.required' => 'Укажите цену за метр',
-            'price_per_meter.numeric' => 'Цена за метр должна быть числом',
+            'price.required' => 'Укажите цену',
+            'price.numeric' => 'Цена должна быть числом',
             'area.required' => 'Укажите площадь проекта',
             'area.integer' => 'Площадь проекта должна быть числом',
             'images.*.image' => 'Файл должен быть изображением',

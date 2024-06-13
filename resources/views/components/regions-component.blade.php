@@ -8,12 +8,12 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper regions__slider-wrapper">
                 @foreach($regions as $region)
-                    <div class="swiper-slide regions__slide">
+                    <a class="swiper-slide regions__slide" href="{{ route('estate.index', ['region' => $region->name]) }}">
                         <div class="regions__slide-image">
                             <img src="{{ asset('storage/' . $region->image_url) }}" alt="region">
                         </div>
                         <span class="regions__slide-overlay">{{ $region->name }} </span>
-                    </div>
+                    </a>
                 @endforeach
             </div>
             <!-- If we need navigation buttons -->

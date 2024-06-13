@@ -16,6 +16,8 @@ class Region extends Model
         'name',
         'area',
         'street',
-        'image_url'
+        'image_url'.
+        'area',
+        'house'
     ];
 }

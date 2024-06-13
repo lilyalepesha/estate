@@ -1,7 +1,7 @@
 <section class="goods">
     <div class="goods__container container">
         <div class="goods__items">
-            @foreach($objects as $object)
+            @forelse($objects as $object)
                 <a href="{{ route('estate.view', $object->id) }}" class="goods__item-link">
                     <div class="goods__item">
                         <div class="goods__item-image">
@@ -16,7 +16,9 @@
                         </div>
                     </div>
                 </a>
-            @endforeach
+            @empty
+                <p style="color: white; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: bold">Список пуст</p>
+            @endforelse
         </div>
         <div style="display: flex; justify-content: center; margin-top: 50px">
             {{ $objects->withQueryString()->links() }}

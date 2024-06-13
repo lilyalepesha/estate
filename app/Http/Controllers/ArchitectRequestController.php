@@ -35,6 +35,6 @@ class ArchitectRequestController extends Controller
 
         Auth::guard('architects')->login($architect);
 
-        return redirect()->back()->with('success', 'Заявка отправлена, мы с вами свяжемся');
+        return redirect()->route('main')->with('success', 'Заявка отправлена, мы с вами свяжемся');
     }
 }

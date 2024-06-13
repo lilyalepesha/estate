@@ -547,6 +547,16 @@ footer {
           clip-path: polygon(0 0, var(--clip-width, 100%) 0, var(--clip-width, 100%) 100%, 0 100%);
 }
 
+.blue-button {
+  background-color: #1DAEFF;
+  padding: 1.3rem 2.7rem;
+  font-weight: bold;
+  color: white;
+}
+.blue-button:hover {
+  background-color: #00649d;
+}
+
 /*!
 * Start Bootstrap - Simple Sidebar v6.0.6 (https://startbootstrap.com/template/simple-sidebar)
 * Copyright 2013-2023 Start Bootstrap
