@@ -8,17 +8,11 @@
                             <img src="{{ $object->image_url }}" alt="{{ $object->name }}">
                         </div>
                         <div class="goods__item-info">
-                            <p>Площадь {{ $object->area }} м<sup>2</sup></p>
-                        </div>
-                        <div class="goods__item-info">
-                            <p>Название проекта <b>{{ $project->name }}</b></p>
-                        </div>
-                        <div class="goods__item-info">
-                            <p>Площадь {{ $project->area }} м<sup>2</sup></p>
+                            <p>Площадь {{ intval($object->area ) }} м<sup>2</sup></p>
                         </div>
                         <div class="goods__item-cost goods__cost">
-                            <p>Цена</p>
-                            <div class="goods__cost-text">{{ $project->price }} BYN</div>
+                            <p>Цена за м <sup>2</sup></p>
+                            <div class="goods__cost-text">{{ intval($object->price) }} BYN</div>
                         </div>
                     </div>
                 </a>

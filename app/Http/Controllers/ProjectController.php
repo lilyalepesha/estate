@@ -32,6 +32,7 @@ class ProjectController extends Controller
                 fn(Builder $query) => $query->paginate(30)
             );
 
+
         return view('admin.projects.index', [
             'projects' => $projects
         ]);

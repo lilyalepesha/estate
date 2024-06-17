@@ -42,23 +42,23 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', function () {
   var stars = document.querySelectorAll('.goods_item-start');
   stars.forEach(function (star) {
+    var _goodsItem$querySelec, _document$getElementB, _document$getElementB2, _document$getElementB3;
+    var goodsItem = star.closest('.goods__item');
+    if (!goodsItem) {
+      console.error('Goods item not found for star:', star);
+      return;
+    }
+    var favouriteId = (_goodsItem$querySelec = goodsItem.querySelector('#favouriteId')) === null || _goodsItem$querySelec === void 0 ? void 0 : _goodsItem$querySelec.value;
+    var userId = (_document$getElementB = document.getElementById('userId')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.value;
+    var userType = (_document$getElementB2 = document.getElementById('userType')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.value;
+    var favouriteType = (_document$getElementB3 = document.getElementById('favouriteType')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value;
+    if (!userType || !favouriteType || !favouriteId || !userId) {
+      console.error('Required fields are missing');
+      return;
+    }
     star.addEventListener('click', function (event) {
-      var _document$getElementB, _document$getElementB2, _goodsItem$querySelec, _document$getElementB3;
       event.preventDefault();
-      var goodsItem = this.closest('.goods__item');
-      if (!goodsItem) {
-        console.error('Goods item not found');
-        return;
-      }
-      var userType = (_document$getElementB = document.getElementById('userType')) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.value;
-      var favouriteType = (_document$getElementB2 = document.getElementById('favouriteType')) === null || _document$getElementB2 === void 0 ? void 0 : _document$getElementB2.value;
-      var favouriteId = (_goodsItem$querySelec = goodsItem.querySelector('#favouriteId')) === null || _goodsItem$querySelec === void 0 ? void 0 : _goodsItem$querySelec.value;
-      var userId = (_document$getElementB3 = document.getElementById('userId')) === null || _document$getElementB3 === void 0 ? void 0 : _document$getElementB3.value;
-      if (!userType || !favouriteType || !favouriteId || !userId) {
-        console.error('Required fields are missing');
-        return;
-      }
-      var isFavourite = goodsItem.classList.contains('active');
+      var isFavourite = star.classList.contains('active');
       fetch('api/update/favourites', {
         method: 'POST',
         headers: {
@@ -76,14 +76,34 @@ document.addEventListener('DOMContentLoaded', function () {
         return response.json();
       }).then(function (data) {
         if (data.success) {
-          star.classList.add('active');
+          // Toggle active class based on updated state
+          if (isFavourite) {
+            star.classList.remove('active');
+          } else {
+            star.classList.add('active');
+          }
+
+          // Reload the page after updating favourites
+          window.location.reload();
         } else {
-          star.classList.remove('active');
           console.error(data.message);
         }
       })["catch"](function (error) {
-        return console.error('Error:', error);
+        return console.error('Error updating favourites:', error);
       });
+    });
+
+    // Initial check and set star class
+    fetch("api/check/favourites?user_type=".concat(userType, "&favourite_type=").concat(favouriteType, "&favourite_id=").concat(favouriteId, "&user_id=").concat(userId)).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      if (data.success && data.data) {
+        star.classList.add('active');
+      } else {
+        star.classList.remove('active');
+      }
+    })["catch"](function (error) {
+      return console.error('Error checking initial favourites state:', error);
     });
   });
 });

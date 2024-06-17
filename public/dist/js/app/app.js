@@ -212,7 +212,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function highlightStars(value) {
     stars.forEach(function (star) {
       var starValue = parseFloat(star.getAttribute('data-value'));
-      var fillWidth = value >= starValue ? 100 : Math.max(0, (value - (starValue - 1)) * 100);
+      var fillWidth = 0;
+      if (value >= starValue) {
+        fillWidth = 100;
+      } else if (value > starValue - 1) {
+        fillWidth = (value - (starValue - 1)) * 100;
+      }
       star.style.setProperty('--clip-width', "".concat(fillWidth, "%"));
     });
   }

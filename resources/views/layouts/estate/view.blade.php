@@ -1,5 +1,5 @@
 <section class="best">
-    <h1 style="text-align: center; margin-right: 1000px; color: white; font-weight: bold">{{ $project->region->street }}</h1>
+    <h1 style="text-align: center; color: white; font-weight: bold">{{ $project->region->street }}</h1>
     <div class="container best__container">
         <div class="best__image-wrapper">
             @if(!empty($project->main_image))
@@ -40,6 +40,12 @@
                     Жилая площадь
                 </h3>
                 <p class="best__description-text">{{ $project->living_space }} <sup>2</sup></p>
+            </div>
+            <div>
+                <h3 class="best__description-title">
+                    Тип недвижимости
+                </h3>
+                <p class="best__description-text">{{ \App\Enums\ProjectTypeEnum::tryFrom($project->type)?->label() }}</p>
             </div>
         </div>
         <div class="best__content">

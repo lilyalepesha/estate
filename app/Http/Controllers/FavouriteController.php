@@ -6,10 +6,12 @@ use App\Enums\FavouriteType;
 use App\Enums\ObjectEnum;
 use App\Enums\UserTypeEnum;
 use App\Models\Estate;
+use App\Models\Favourite;
 use App\Models\ObjectImage;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\Type\ObjectType;
 
 class FavouriteController extends Controller
@@ -24,10 +26,9 @@ class FavouriteController extends Controller
                     estates.price as price'
             )->join('regions', 'regions.id', '=', 'estates.region_id')
             ->join('users', 'users.id', '=', 'estates.user_id')
-            ->where('users.id', '=', auth()->id())
+            ->where('users.id', '=', auth()->id() ?? \auth()->guard('architect')->id())
             ->join('favourites', 'users.id', '=', 'favourites.user_id')
-            ->where('favourites.favourite_type', '=', FavouriteType::ESTATE->value)
-            ->where('favourites.user_type', '=', UserTypeEnum::USER->value)
+            ->where('favourites.user_type', '=', auth()->id() ? UserTypeEnum::USER->value : UserTypeEnum::ARCHITECT->value)
             ->get();
 
         $objects->transform(function ($item) {

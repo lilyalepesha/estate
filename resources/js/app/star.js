@@ -8,7 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function highlightStars(value) {
         stars.forEach(star => {
             const starValue = parseFloat(star.getAttribute('data-value'));
-            const fillWidth = (value >= starValue) ? 100 : Math.max(0, (value - (starValue - 1)) * 100);
+            let fillWidth = 0;
+
+            if (value >= starValue) {
+                fillWidth = 100;
+            } else if (value > starValue - 1) {
+                fillWidth = (value - (starValue - 1)) * 100;
+            }
+
             star.style.setProperty('--clip-width', `${fillWidth}%`);
         });
     }

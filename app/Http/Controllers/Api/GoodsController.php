@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Favourite;
 use App\Models\Project;
-use App\Models\ProjectImage;
-use App\Models\Region;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 final class GoodsController extends Controller
@@ -73,14 +70,12 @@ final class GoodsController extends Controller
         try {
             if (
                 $request->filled('user_type')
-                && $request->filled('favourite_type')
                 && $request->filled('favourite_id')
                 && $request->filled('user_id')
             ) {
                 $favourite = Favourite::query()
                     ->where('user_type', $request->string('user_type'))
-                    ->where('favourite_type', $request->integer('favourite_type'))
-                    ->where('favourite_id', $request->integer('favourite_id'))
+                    ->where('estate_id', $request->integer('favourite_id'))
                     ->where('user_id', $request->integer('user_id'))
                     ->first();
 
@@ -93,8 +88,7 @@ final class GoodsController extends Controller
                 } else {
                     Favourite::query()->create([
                         'user_type' => $request->string('user_type'),
-                        'favourite_type' => $request->integer('favourite_type'),
-                        'favourite_id' => $request->integer('favourite_id'),
+                        'estate_id' => $request->integer('favourite_id'),
                         'user_id' => $request->integer('user_id'),
                     ]);
                 }
@@ -129,8 +123,7 @@ final class GoodsController extends Controller
             ) {
                 $favourite = Favourite::query()
                     ->where('user_type', $request->string('user_type'))
-                    ->where('favourite_type', $request->integer('favourite_type'))
-                    ->where('favourite_id', $request->integer('favourite_id'))
+                    ->where('estate_id', $request->integer('favourite_id'))
                     ->where('user_id', $request->integer('user_id'))
                     ->exists();
             }

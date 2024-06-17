@@ -85,11 +85,11 @@
                             <img src="{{ $estate->image_url }}" alt="{{ $estate->name }}">
                         </div>
                         <div class="goods__item-info">
-                            <p>Площадь {{ $estate->area }} м<sup>2</sup></p>
+                            <p>Площадь {{ intval($estate->area) }} м<sup>2</sup></p>
                         </div>
                         <div class="goods__item-cost goods__cost">
-                            <p>Цена</p>
-                            <div class="goods__cost-text">{{ $estate->price }} BYN</div>
+                            <p>Цена за м<sup>2</sup></p>
+                            <div class="goods__cost-text">{{ intval($estate->price) }} BYN</div>
                         </div>
                     </div>
                 </a>

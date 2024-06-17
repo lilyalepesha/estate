@@ -22,7 +22,7 @@
                 <div class="header__list-item"><a href="{{ route('main') }}" class="header__list-link">Главная</a></div>
                 <div class="header__list-item"><a href="{{ route('goods.index') }}" class="header__list-link">Проекты</a>
                 </div>
-                <div class="header__list-item"><a href="{{ route('agent.index') }}" class="header__list-link">Агенты </a></div>
+                <div class="header__list-item"><a href="{{ route('agent.index') }}" class="header__list-link">Агенты</a></div>
                 <div class="header__list-item"><a href="{{ route('estate.index') }}" class="header__list-link">Недвжимость</a></div>
                 @auth
                     <div class="header__list-item"><a href="{{ route('admin.index') }}" class="header__list-link">Админ панель</a></div>
