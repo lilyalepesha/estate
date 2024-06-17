@@ -33,8 +33,12 @@
             </div>
 
             <div class="form-group">
-                <label for="architectEmailInput">Регион</label>
-                <input name="region" class="form-control" id="exampleInputEmail1" placeholder="Введите регион">
+                <label for="exampleInputPassword1">Регион</label>
+                <select name="region" class="form-control">
+                    @foreach(\App\Models\Region::query()->pluck('name', 'id') as $key => $value)
+                        <option value="{{ $value }}">{{ $value }}</option>
+                    @endforeach
+                </select>
                 @error('region')
                     <span class="red">{{ $message }}</span>
                 @enderror
@@ -52,14 +56,6 @@
                 <label for="architectEmailInput">Улица</label>
                 <input name="street" class="form-control" id="exampleInputEmail1" placeholder="Введите улицу">
                 @error('street')
-                    <span class="red">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="architectEmailInput">Дом</label>
-                <input name="house" class="form-control" id="exampleInputEmail1" placeholder="Введите дом">
-                @error('house')
                     <span class="red">{{ $message }}</span>
                 @enderror
             </div>
@@ -83,7 +79,7 @@
             @can('is_admin')
                 <div class="form-group">
                     <label for="exampleInputEmail1">Статус</label>
-                    <select style="outline: none; width: 100%" class="form-select" aria-label="Подвердить" name="verified">
+                    <select style="outline: none; width: 100%" class="form-control" aria-label="Подвердить" name="verified">
                         <option selected value="0">Не подверждён</option>
                         <option value="1">Подверждён</option>
                     </select>
@@ -110,7 +106,7 @@
             <div class="mb-3">
                 <label for="properties" class="form-label">Выберите свойства проекта</label>
                 <div class="input-group">
-                    <select style="outline: none; width: 100%" class="form-select" aria-label="Default select example" multiple name="properties[]">
+                    <select style="outline: none; width: 100%" class="form-control" aria-label="Default select example" multiple name="properties[]">
                         @foreach($properties as $property)
                             <option value="{{ $property }}">{{ $property }}</option>
                         @endforeach

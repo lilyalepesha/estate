@@ -1,7 +1,7 @@
 window.onload = () => {
     const stars = document.querySelectorAll('.architect__stars svg');
     const ratingInput = document.querySelector('#rating');
-    console.log(ratingInput)
+
     stars.forEach(star => {
         star.addEventListener('click', function () {
             const value = this.getAttribute('data-value');
@@ -22,7 +22,7 @@ window.onload = () => {
 
     function highlightStars(value) {
         stars.forEach(star => {
-            if (star.getAttribute('data-value') <= value) {
+            if (star.getAttribute('data-value') <= value && value) {
                 star.classList.add('active');
             } else {
                 star.classList.remove('active');

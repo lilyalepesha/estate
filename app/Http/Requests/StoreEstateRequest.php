@@ -33,7 +33,6 @@ class StoreEstateRequest extends FormRequest
         return [
             'description' => ['required', 'string', 'min:3', 'max:1000'],
             'region' => ['required', 'string'],
-            'house' => ['required', 'string'],
             'area' => ['required', 'string'],
             'street' => ['required', 'string'],
             'price' => ['required', 'integer', 'min:1'],

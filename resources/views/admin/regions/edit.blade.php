@@ -12,20 +12,6 @@
                     <span class="red">{{ $message }}</span>
                 @enderror
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Улица</label>
-                <input name="street" class="form-control" id="exampleInputEmail1" placeholder="Введите улицу" value="{{ $region->street }}">
-                @error('street')
-                    <span class="red">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Область</label>
-                <input name="area" class="form-control" id="exampleInputEmail1" placeholder="Введите область">
-                @error('area')
-                    <span class="red">{{ $message }}</span>
-                @enderror
-            </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Выберите фото</label>
                 <div class="input-group">

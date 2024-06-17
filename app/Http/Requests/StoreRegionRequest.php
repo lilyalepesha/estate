@@ -20,12 +20,8 @@ class StoreRegionRequest extends FormRequest
                 'required',
                 'min:2',
                 'max:255',
-                Rule::unique('regions')->where(function ($query) {
-                    return $query->where('area', $this->input('area'));
-                })
+                'unique:regions,name'
             ],
-            'street' => ['required', 'string', 'min:2', 'max:255'],
-            'area' => ['required', 'string', 'min:2', 'max:255'],
             'image' => ['required', 'image', 'mimes:jpg,webp,png,jpeg']
         ];
     }
@@ -40,7 +36,7 @@ class StoreRegionRequest extends FormRequest
         return [
             'name.required' => 'Поле "Имя" обязательно для заполнения.',
             'name.min' => 'Поле "Имя" должно содержать не менее :min символов.',
-            'name.unique' => 'Поле "Имя" должно быть уникальным в сочетании с областью.',
+            'name.unique' => 'Поле "Имя" должно быть уникальным',
             'name.max' => 'Поле "Имя" не должно превышать :max символов.',
             'street.required' => 'Поле "Улица" обязательно для заполнения.',
             'street.string' => 'Поле "Улица" должно быть строкой.',
@@ -52,7 +48,7 @@ class StoreRegionRequest extends FormRequest
             'area.max' => 'Поле "Область" не должно превышать :max символов.',
             'image.required' => 'Поле "Изображение" обязательно для заполнения.',
             'image.image' => 'Поле "Изображение" должно быть изображением.',
-            'image.mimes' => 'Поле "Изображение" должно быть файлом типа: jpg, webp, png, jpeg.'
+            'image.mimes' => 'Поле "Изображение" должно быть файлом типа: jpg, webp, png, jpeg.',
         ];
     }
 

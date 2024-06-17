@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique()->nullable();
+            $table->string('name')->nullable();
             $table->string('area')->nullable();
             $table->string('street')->nullable();
-            $table->string('house')->nullable();
             $table->string('image_url')->nullable();
 
             $table->timestamps();

@@ -65,15 +65,18 @@
                                 </svg>
                             </div>
                         @endif
-                        <div class="goods__item-image">
+                        <div style="margin-bottom: 10px" class="goods__item-image">
                             <img src="{{ $project->image_url }}" alt="{{ $project->name }}">
+                        </div>
+                        <div class="goods__item-info">
+                            <p>Название проекта <b>{{ $project->name }}</b></p>
                         </div>
                         <div class="goods__item-info">
                             <p>Площадь {{ $project->area }} м<sup>2</sup></p>
                         </div>
                         <div class="goods__item-cost goods__cost">
-                            <p>Цена за м<sup>2</sup></p>
-                            <div class="goods__cost-text">{{ $project->price }}</div>
+                            <p>Цена</p>
+                            <div class="goods__cost-text">{{ $project->price }} BYN</div>
                         </div>
                     </div>
                 </a>

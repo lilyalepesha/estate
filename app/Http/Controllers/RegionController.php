@@ -33,14 +33,13 @@ class RegionController extends Controller
      */
     public function store(StoreRegionRequest $request): RedirectResponse
     {
-        $region = Region::query()->create($request->validated());
-
         $name = Str::uuid() . '.' . $request->file('image')->extension();
 
         Storage::putFileAs( 'public/regions/', $request->file('image'), $name);
 
-        $region->update([
-            'image_url' => 'regions/' . $name,
+        Region::query()->insert([
+           'name' => $request->input('name'),
+           'image_url' => 'regions/' . $name
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Успешно создан');
@@ -67,14 +66,13 @@ class RegionController extends Controller
 
             Storage::putFileAs( 'public/regions/', $request->file('image'), $name);
 
-            $region->update([
+            $region->forceFill([
                 'image_url' => 'regions/' . $name,
             ]);
         }
 
         $region->update([
             'name' => $request->string('name'),
-            'street' => $request->string('street'),
         ]);
 
         return redirect()->route('admin.index')->with('success', 'Успешно обновлён');

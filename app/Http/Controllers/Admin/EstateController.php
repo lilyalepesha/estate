@@ -53,12 +53,10 @@ class EstateController extends Controller
         $regionId = Region::query()->firstOrCreate([
             'name' => $request->input('region'),
             'area' => $request->input('area'),
-            'house' => $request->input('house'),
             'street' => $request->input('street'),
         ], [
             'name' => $request->input('region'),
             'area' => $request->input('area'),
-            'house' => $request->input('house'),
             'street' => $request->input('street'),
         ])?->id;
 

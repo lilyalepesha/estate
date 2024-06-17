@@ -15,8 +15,6 @@
         <thead>
         <tr>
             <th scope="col">Город</th>
-            <th scope="col">Область</th>
-            <th scope="col">Улица</th>
             <th scope="col">Дата создания</th>
             <th scope="col">Редактировать</th>
             <th scope="col">Удалить</th>
@@ -26,8 +24,6 @@
         @foreach($regions as $region)
             <tr>
                 <td>{{ $region->name }}</td>
-                <td>{{ $region->area }}</td>
-                <td>{{ $region->street }}</td>
                 <td>{{ $region->created_at }}</td>
                 <td>
                     <form action="{{route('admin.region.edit', $region->id)}}" method="GET">

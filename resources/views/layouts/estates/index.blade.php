@@ -88,7 +88,7 @@
                             <p>Площадь {{ $estate->area }} м<sup>2</sup></p>
                         </div>
                         <div class="goods__item-cost goods__cost">
-                            <p>Цена:</p>
+                            <p>Цена</p>
                             <div class="goods__cost-text">{{ $estate->price }} BYN</div>
                         </div>
                     </div>

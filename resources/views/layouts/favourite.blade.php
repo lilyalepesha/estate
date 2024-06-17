@@ -10,9 +10,15 @@
                         <div class="goods__item-info">
                             <p>Площадь {{ $object->area }} м<sup>2</sup></p>
                         </div>
+                        <div class="goods__item-info">
+                            <p>Название проекта <b>{{ $project->name }}</b></p>
+                        </div>
+                        <div class="goods__item-info">
+                            <p>Площадь {{ $project->area }} м<sup>2</sup></p>
+                        </div>
                         <div class="goods__item-cost goods__cost">
-                            <p>Цена за м<sup>2</sup></p>
-                            <div class="goods__cost-text">{{ $object->price }}</div>
+                            <p>Цена</p>
+                            <div class="goods__cost-text">{{ $project->price }} BYN</div>
                         </div>
                     </div>
                 </a>

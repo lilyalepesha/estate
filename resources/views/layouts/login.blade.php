@@ -5,7 +5,7 @@
         </h1>
         <form class="login__form form" action="{{ route('login.store') }}" method="POST">
             @csrf
-            <a style="margin: 10px 0" class="blue-button" href="{{ route('architect.login.index') }}">Архитектор</a>
+            <a class="architect__button blue-button" href="{{ route('architect.login.index') }}">Архитектор</a>
             <div class="login__form-wrapper form__wrapper">
                 <div class="login__form-input-wrapper form__input-wrapper">
                     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">

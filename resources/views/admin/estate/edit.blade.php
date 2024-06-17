@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Описание</label>
-                <input value="{{ $estate->description }}" name="description" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
+                <input name="description" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
                 @error('description')
                 <span class="red">{{ $message }}</span>
                 @enderror
@@ -15,7 +15,7 @@
 
             <div class="form-group">
                 <label for="exampleInputEmail1">Стоимость</label>
-                <input value="{{ $estate->price }}" name="price" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
+                <input name="price" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
                 @error('price')
                 <span class="red">{{ $message }}</span>
                 @enderror
@@ -29,21 +29,25 @@
                     @endforeach
                 </select>
                 @error('type')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="architectEmailInput">Регион</label>
-                <input value="{{ $estate->region?->name }}" name="region" class="form-control" id="exampleInputEmail1" placeholder="Введите регион">
+                <label for="exampleInputPassword1">Регион</label>
+                <select name="region" class="form-control">
+                    @foreach(\App\Models\Region::query()->pluck('name', 'id') as $key => $value)
+                        <option value="{{ $value }}">{{ $value }}</option>
+                    @endforeach
+                </select>
                 @error('region')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="architectEmailInput">Область</label>
-                <input value="{{ $estate->region?->area }}" name="area" class="form-control" id="exampleInputEmail1" placeholder="Введите область">
+                <input name="area" class="form-control" id="exampleInputEmail1" placeholder="Введите область">
                 @error('area')
                 <span class="red">{{ $message }}</span>
                 @enderror
@@ -51,40 +55,32 @@
 
             <div class="form-group">
                 <label for="architectEmailInput">Улица</label>
-                <input value="{{ $estate->region?->street }}" name="street" class="form-control" id="exampleInputEmail1" placeholder="Введите улицу">
+                <input name="street" class="form-control" id="exampleInputEmail1" placeholder="Введите улицу">
                 @error('street')
                 <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="architectEmailInput">Дом</label>
-                <input value="{{ $estate->region?->house }}" name="house" class="form-control" id="exampleInputEmail1" placeholder="Введите дом">
-                @error('house')
+                <label for="exampleInputEmail1">Общая площадь</label>
+                <input name="total_area" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
+                @error('total_area')
                 <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Общая площадь</label>
-                <input value="{{ $estate->total_area }}" name="total_area" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
-                @error('total_area')
-                    <span class="red">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-group">
                 <label for="exampleInputEmail1">Жилая площадь</label>
-                <input value="{{ $estate->living_space }}" name="living_space" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
+                <input name="living_space" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
                 @error('living_space')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             @can('is_admin')
                 <div class="form-group">
                     <label for="exampleInputEmail1">Статус</label>
-                    <select style="outline: none; width: 100%" class="form-select" aria-label="Подвердить" name="verified">
+                    <select style="outline: none; width: 100%" class="form-control" aria-label="Подвердить" name="verified">
                         <option selected value="0">Не подверждён</option>
                         <option value="1">Подверждён</option>
                     </select>
@@ -101,18 +97,17 @@
                     <label class="input-group-text" for="image">Загрузить</label>
                 </div>
                 @error('images.*')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
                 @error('images')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="mb-3">
                 <label for="properties" class="form-label">Выберите свойства проекта</label>
                 <div class="input-group">
-                    <select style="outline: none; width: 100%" class="form-select" aria-label="Default select example"
-                            multiple name="properties[]">
+                    <select style="outline: none; width: 100%" class="form-control" aria-label="Default select example" multiple name="properties[]">
                         @foreach($properties as $property)
                             <option value="{{ $property }}">{{ $property }}</option>
                         @endforeach
@@ -127,7 +122,7 @@
             </div>
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Добавить</button>
+            <button type="submit" class="btn btn-primary">Редактировать</button>
         </div>
     </form>
 @endsection

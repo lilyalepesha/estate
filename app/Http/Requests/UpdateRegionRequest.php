@@ -20,12 +20,7 @@ class UpdateRegionRequest extends FormRequest
                 'required',
                 'min:2',
                 'max:255',
-                Rule::unique('regions')->where(function ($query) {
-                    return $query->where('area', $this->input('area'));
-                })
             ],
-            'street' => ['required', 'string', 'min:2', 'max:255'],
-            'area' => ['required', 'string', 'min:2', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpg,webp,png,jpeg']
         ];
     }

@@ -124,7 +124,6 @@ __webpack_require__.r(__webpack_exports__);
 window.onload = function () {
   var stars = document.querySelectorAll('.architect__stars svg');
   var ratingInput = document.querySelector('#rating');
-  console.log(ratingInput);
   stars.forEach(function (star) {
     star.addEventListener('click', function () {
       var value = this.getAttribute('data-value');
@@ -142,7 +141,7 @@ window.onload = function () {
   });
   function highlightStars(value) {
     stars.forEach(function (star) {
-      if (star.getAttribute('data-value') <= value) {
+      if (star.getAttribute('data-value') <= value && value) {
         star.classList.add('active');
       } else {
         star.classList.remove('active');
