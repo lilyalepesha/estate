@@ -46,7 +46,7 @@
         </form>
         @guest
             <div class="form__registration">
-                Нет аккаунта? <a href="{{ route('architect.index') }}">Зарегистрироваться</a>
+                Нет аккаунта? <a href="{{ route('architect.register.index') }}">Зарегистрироваться</a>
             </div>
         @endguest
     </div>

@@ -45,7 +45,7 @@ Route::as('register.store')->post('/register/store', [RegisterController::class,
 Route::as('login.store')->post('/login/store', [LoginController::class, '__invoke']);
 Route::as('logout')->get('/logout', [LogoutController::class, 'logout']);
 
-Route::as('architect.register')->get('architect', function () {
+Route::as('architect.register.index')->get('architect/register', function () {
     return view('architect.register');
 });
 
