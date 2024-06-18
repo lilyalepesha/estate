@@ -70,7 +70,7 @@
                     @enderror
                 </div>
 
-                <input type="hidden" name="architect_id" value="{{ $project->architect_id }}">
+                <input type="hidden" name="architect_id" value="{{ request()->route('architect') }}">
                 <input type="hidden" name="rating" id="rating" value="">
                 <textarea name="text" class="architect__comment" placeholder="Напишите комментарий"></textarea>
                 @error('text')
