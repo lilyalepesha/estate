@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('total_area');
             $table->decimal('living_space');
             $table->integer('type');
+            $table->string('phone');
 
             $table->foreignId('region_id')
                 ->constrained()

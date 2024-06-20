@@ -32,9 +32,6 @@
                         </svg>
                         WhatsApp
                     </a>
-                    <p class="agent-socials__deals">
-                        Успешные сделки: {{ rand(1, 100) }}
-                    </p>
                 </div>
             </div>
         @empty

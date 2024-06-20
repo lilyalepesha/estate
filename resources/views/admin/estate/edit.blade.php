@@ -6,16 +6,16 @@
         @method('PATCH')
         <div class="card-body">
             <div class="form-group">
-                <label for="exampleInputEmail1">Описание</label>
-                <input name="description" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
+                <label for="descriptionInput">Описание</label>
+                <input name="description" class="form-control" id="descriptionInput" placeholder="Введите описание" value="{{ old('description', $estate->description) }}">
                 @error('description')
                 <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Стоимость</label>
-                <input name="price" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
+                <label for="priceInput">Стоимость</label>
+                <input name="price" class="form-control" id="priceInput" placeholder="Введите стоимость" value="{{ old('price', $estate->price) }}">
                 @error('price')
                 <span class="red">{{ $message }}</span>
                 @enderror
@@ -25,7 +25,7 @@
                 <label for="typeInput">Тип недвижимости</label>
                 <select name="type" class="form-control" id="typeInput">
                     @foreach (\App\Enums\ProjectTypeEnum::cases() as $type)
-                        <option value="{{ $type->value }}">{{ $type->label() }}</option>
+                        <option value="{{ $type->value }}" {{ old('type', $estate->type) == $type->value ? 'selected' : '' }}>{{ $type->label() }}</option>
                     @endforeach
                 </select>
                 @error('type')
@@ -34,10 +34,10 @@
             </div>
 
             <div class="form-group">
-                <label for="exampleInputPassword1">Регион</label>
-                <select name="region" class="form-control">
-                    @foreach(\App\Models\Region::query()->pluck('name', 'id') as $key => $value)
-                        <option value="{{ $value }}">{{ $value }}</option>
+                <label for="regionInput">Регион</label>
+                <select name="region" class="form-control" id="regionInput">
+                    @foreach(\App\Models\Region::query()->pluck('name', 'id')->unique() as $key => $value)
+                        <option value="{{ $key }}" {{ old('region', $estate->region->id) == $key ? 'selected' : '' }}>{{ $value }}</option>
                     @endforeach
                 </select>
                 @error('region')
@@ -46,32 +46,40 @@
             </div>
 
             <div class="form-group">
-                <label for="architectEmailInput">Область</label>
-                <input name="area" class="form-control" id="exampleInputEmail1" placeholder="Введите область">
+                <label for="phoneInput">Телефон для связи</label>
+                <input name="phone" class="form-control" id="phoneInput" placeholder="+375333333333" value="{{ old('phone', $estate->phone) }}">
+                @error('phone')
+                <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="areaInput">Область</label>
+                <input name="area" class="form-control" id="areaInput" placeholder="Введите область" value="{{ old('area', $estate->region?->area) }}">
                 @error('area')
                 <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="architectEmailInput">Улица</label>
-                <input name="street" class="form-control" id="exampleInputEmail1" placeholder="Введите улицу">
+                <label for="streetInput">Улица</label>
+                <input name="street" class="form-control" id="streetInput" placeholder="Введите улицу" value="{{ old('street', $estate->region?->street) }}">
                 @error('street')
                 <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Общая площадь</label>
-                <input name="total_area" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
+                <label for="totalAreaInput">Общая площадь</label>
+                <input name="total_area" class="form-control" id="totalAreaInput" placeholder="Введите общую площадь" value="{{ old('total_area', $estate->total_area) }}">
                 @error('total_area')
                 <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="exampleInputEmail1">Жилая площадь</label>
-                <input name="living_space" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
+                <label for="livingSpaceInput">Жилая площадь</label>
+                <input name="living_space" class="form-control" id="livingSpaceInput" placeholder="Введите жилую площадь" value="{{ old('living_space', $estate->living_space) }}">
                 @error('living_space')
                 <span class="red">{{ $message }}</span>
                 @enderror
@@ -79,10 +87,10 @@
 
             @can('is_admin')
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Статус</label>
-                    <select style="outline: none; width: 100%" class="form-control" aria-label="Подвердить" name="verified">
-                        <option selected value="0">Не подверждён</option>
-                        <option value="1">Подверждён</option>
+                    <label for="verifiedInput">Статус</label>
+                    <select style="outline: none; width: 100%" class="form-control" aria-label="Подтвердить" name="verified" id="verifiedInput">
+                        <option value="0" {{ old('verified', $estate->verified) == 0 ? 'selected' : '' }}>Не подтверждён</option>
+                        <option value="1" {{ old('verified', $estate->verified) == 1 ? 'selected' : '' }}>Подтверждён</option>
                     </select>
                     @error('verified')
                     <span class="red">{{ $message }}</span>
@@ -105,11 +113,11 @@
             </div>
 
             <div class="mb-3">
-                <label for="properties" class="form-label">Выберите свойства проекта</label>
+                <label for="propertiesInput" class="form-label">Выберите свойства проекта</label>
                 <div class="input-group">
-                    <select style="outline: none; width: 100%" class="form-control" aria-label="Default select example" multiple name="properties[]">
+                    <select style="outline: none; width: 100%" class="form-control" aria-label="Default select example" multiple name="properties[]" id="propertiesInput">
                         @foreach($properties as $property)
-                            <option value="{{ $property }}">{{ $property }}</option>
+                            <option value="{{ $property }}" {{ collect(old('properties', $estate->properties))->contains($property) ? 'selected' : '' }}>{{ $property }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -126,4 +134,3 @@
         </div>
     </form>
 @endsection
-

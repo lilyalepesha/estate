@@ -8,6 +8,7 @@ use App\Models\ObjectImage;
 use App\Models\Project;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArchitectController extends Controller
 {
@@ -16,7 +17,18 @@ class ArchitectController extends Controller
      */
     public function index()
     {
-        return view('architect.index', ['architects' => Architect::query()->paginate(20)]);
+        return view('architect.index', [
+            'architects' => Architect::query()
+                ->leftJoinSub(
+                    Review::query()->select('architect_id', DB::raw('AVG(rating) as avg_rating'))
+                        ->groupBy('architect_id'),
+                    'reviews',
+                    'architects.id',
+                    'reviews.architect_id'
+                )
+                ->select('architects.*', 'reviews.avg_rating')
+                ->paginate(20)
+        ]);
     }
 
     /**

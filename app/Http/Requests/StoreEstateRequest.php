@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\ProjectTypeEnum;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -26,11 +27,12 @@ class StoreEstateRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
+            'phone' => ['required', 'string', 'regex:/^\+375\d{9}$/'],
             'description' => ['required', 'string', 'min:3', 'max:1000'],
             'region' => ['required', 'string'],
             'area' => ['required', 'string'],
@@ -44,7 +46,7 @@ class StoreEstateRequest extends FormRequest
             'images' => ['nullable', 'array'],
             'images.*' => ['required', 'file', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10000'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            'verified' => ['nullable', 'bool']
+            'verified' => ['nullable', 'boolean'],
         ];
     }
 
@@ -69,6 +71,7 @@ class StoreEstateRequest extends FormRequest
             'properties.*' => 'свойство',
             'images' => 'изображения',
             'images.*' => 'изображение',
+            'phone' => 'телефон',
         ];
     }
 
@@ -80,6 +83,9 @@ class StoreEstateRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'phone.required' => 'Поле :attribute обязательно для заполнения.',
+            'phone.string' => 'Поле :attribute должно быть строкой.',
+            'phone.regex' => 'Поле :attribute должно быть в формате +375XXXXXXXXX.',
             'description.required' => 'Поле :attribute обязательно для заполнения.',
             'description.string' => 'Поле :attribute должно быть строкой.',
             'description.min' => 'Поле :attribute должно содержать как минимум :min символов.',

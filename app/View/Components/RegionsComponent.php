@@ -22,6 +22,6 @@ class RegionsComponent extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.regions-component', ['regions' => Region::query()->get()]);
+        return view('components.regions-component', ['regions' => Region::query()->whereNotNull('image_url')->distinct()->pluck('image_url', 'name')]);
     }
 }

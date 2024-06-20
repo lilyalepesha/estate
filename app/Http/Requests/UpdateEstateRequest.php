@@ -32,9 +32,9 @@ class UpdateEstateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'phone' => ['required', 'string', 'regex:/^\+375\d{9}$/'],
             'description' => ['required', 'string', 'min:3', 'max:1000'],
             'region' => ['required', 'string'],
-            'house' => ['required', 'string'],
             'area' => ['required', 'string'],
             'street' => ['required', 'string'],
             'price' => ['required', 'integer', 'min:1'],
@@ -46,7 +46,7 @@ class UpdateEstateRequest extends FormRequest
             'images' => ['nullable', 'array'],
             'images.*' => ['required', 'file', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10000'],
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            'verified' => ['nullable', 'bool']
+            'verified' => ['nullable', 'boolean'],
         ];
     }
 
@@ -71,6 +71,7 @@ class UpdateEstateRequest extends FormRequest
             'properties.*' => 'свойство',
             'images' => 'изображения',
             'images.*' => 'изображение',
+            'phone' => 'телефон',
         ];
     }
 
@@ -82,6 +83,9 @@ class UpdateEstateRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'phone.required' => 'Поле :attribute обязательно для заполнения.',
+            'phone.string' => 'Поле :attribute должно быть строкой.',
+            'phone.regex' => 'Поле :attribute должно быть в формате +375XXXXXXXXX.',
             'description.required' => 'Поле :attribute обязательно для заполнения.',
             'description.string' => 'Поле :attribute должно быть строкой.',
             'description.min' => 'Поле :attribute должно содержать как минимум :min символов.',

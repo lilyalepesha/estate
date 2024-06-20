@@ -55,7 +55,16 @@
             <p class="best__content-text">
                 {{ $project->description }}
             </p>
+            <div style="display: flex; justify-content: center; align-items: center; column-gap: 15px">
+                <h3 class="best__content-title">
+                    Телефон для связи:
+                </h3>
+                <p class="best__content-text">
+                    {{ $project->phone }}
+                </p>
+            </div>
         </div>
+
         <ul class="best__list">
             @foreach($properties as $property)
                 <li class="best__list-item">

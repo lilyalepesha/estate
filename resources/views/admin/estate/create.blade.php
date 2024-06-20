@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label for="exampleInputPassword1">Регион</label>
                 <select name="region" class="form-control">
-                    @foreach(\App\Models\Region::query()->pluck('name', 'id') as $key => $value)
+                    @foreach(\App\Models\Region::query()->pluck('name', 'id')->unique() as $key => $value)
                         <option value="{{ $value }}">{{ $value }}</option>
                     @endforeach
                 </select>
@@ -72,6 +72,14 @@
                 <label for="exampleInputEmail1">Жилая площадь</label>
                 <input name="living_space" class="form-control" id="exampleInputEmail1" placeholder="Введите описание">
                 @error('living_space')
+                    <span class="red">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Телефон для связи</label>
+                <input name="phone" class="form-control" id="exampleInputEmail1" placeholder="+375333333333">
+                @error('phone')
                     <span class="red">{{ $message }}</span>
                 @enderror
             </div>
