@@ -18,7 +18,7 @@ class StoreArchitectRequest extends FormRequest
             'name' => ['required', 'string', 'min:2', 'max:255'],
             'last_name' =>  ['required', 'string', 'min:2', 'max:255'],
             'father_name' =>  ['required', 'string', 'min:2', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:1000'],
             'email' => ['required', 'email', 'unique:architects,email'],
             'password' => ['required', 'min:8', 'string'],
             'experience' => ['required', 'max:255'],
