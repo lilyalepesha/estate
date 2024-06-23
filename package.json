@@ -8,7 +8,7 @@
         "hot": "mix watch --hot",
         "prod": "mix --production",
         "start": "webpack-dev-server",
-        "vercel-build": "sh install-composer-dependencies.sh"
+        "vercel-build": "sh build.sh"
     },
     "devDependencies": {
         "axios": "^1.6.4",
