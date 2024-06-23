@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->longText('description')->nullable();
             $table->decimal('price');
-            $table->decimal('total_area');
-            $table->decimal('living_space');
+            $table->integer('total_area');
+            $table->integer('living_space');
             $table->integer('type');
             $table->string('phone');
 

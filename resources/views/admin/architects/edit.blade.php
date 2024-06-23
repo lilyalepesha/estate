@@ -1,63 +1,65 @@
+
+Копировать код
 @extends('layouts.admin.main')
 
 @section('content')
-    <form method="POST" action="{{route('admin.architects.update', $architect->id)}}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.architects.update', $architect->id) }}" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="card-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Имя</label>
-                <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Введите имя" value="{{$architect->name}}">
+                <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Введите имя" value="{{ old('name', $architect->name) }}">
                 @error('name')
-                    <span class="red">{{$message}}</span>
+                <span class="red">{{$message}}</span>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="exampleInputPassword1">Фамилия</label>
-                <input name="last_name" type="text" class="form-control" id="exampleInputPassword1" placeholder="Введите фамилию" value="{{$architect->last_name}}">
+                <input name="last_name" type="text" class="form-control" id="exampleInputPassword1" placeholder="Введите фамилию" value="{{ old('last_name', $architect->last_name) }}">
                 @error('last_name')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="descriptionInput">Описание</label>
-                <input name="description" value="{{ $architect->description }}" class="form-control" id="descriptionInput" placeholder="Введите описание">
+                <input name="description" value="{{ old('description', $architect->description) }}" class="form-control" id="descriptionInput" placeholder="Введите описание">
                 @error('description')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="exampleInputPassword1">Отчество</label>
-                <input name="father_name" type="text" class="form-control" id="exampleInputPassword1" placeholder="Введите отчество" value="{{$architect->father_name}}">
+                <input name="father_name" type="text" class="form-control" id="exampleInputPassword1" placeholder="Введите отчество" value="{{ old('father_name', $architect->father_name) }}">
                 @error('father_name')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="exampleInputEmail1">Email</label>
-                <input name="email" class="form-control" id="exampleInputEmail1" placeholder="Введите email" value="{{$architect->email}}">
+                <input name="email" class="form-control" id="exampleInputEmail1" placeholder="Введите email" value="{{ old('email', $architect->email) }}">
                 @error('email')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="exampleInputPassword1">Пароль</label>
-                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль" value="{{$architect->password}}">
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль" value="{{ old('password', $architect->password) }}">
                 @error('password')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="exampleInputPassword1">Опыт работы</label>
-                <input name="experience" type="text" class="form-control" id="exampleInputPassword1" placeholder="Введите опыт" value="{{$architect->experience}}">
+                <input name="experience" type="text" class="form-control" id="exampleInputPassword1" placeholder="Введите опыт" value="{{ old('experience', $architect->experience) }}">
                 @error('experience')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -76,7 +78,7 @@
                     <label class="input-group-text" for="image">Загрузить</label>
                 </div>
                 @error('image')
-                    <span class="red">{{ $message }}</span>
+                <span class="red">{{ $message }}</span>
                 @enderror
             </div>
         </div>

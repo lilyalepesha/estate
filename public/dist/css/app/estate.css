@@ -14,6 +14,11 @@ html {
   }
 }
 
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .red {
   color: lightcoral;
 }
@@ -514,6 +519,7 @@ footer {
 }
 
 .goods__item-info {
+  margin-top: 1rem;
   display: flex;
   align-items: flex-start;
   -moz-column-gap: 1.5rem;

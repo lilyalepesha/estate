@@ -336,6 +336,11 @@ html {
   }
 }
 
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .red {
   color: lightcoral;
 }

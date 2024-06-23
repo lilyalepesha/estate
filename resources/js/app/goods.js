@@ -40,16 +40,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Toggle active class based on updated state
                         if (isFavourite) {
                             star.classList.remove('active');
                         } else {
                             star.classList.add('active');
                         }
 
-                        // Reload the page after updating favourites
                         window.location.reload();
+
                     } else {
+                        window.location.reload();
                         console.error(data.message);
                     }
                 })

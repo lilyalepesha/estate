@@ -7,8 +7,7 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "mix --production",
-        "start": "webpack-dev-server",
-        "vercel-build": "sh build.sh"
+        "start": "webpack-dev-server"
     },
     "devDependencies": {
         "axios": "^1.6.4",

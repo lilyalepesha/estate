@@ -120,9 +120,5 @@
                 Фонта
             </li>
         </ul>
-        <div class="best__map">
-            <h3 class="best__map-title">Объект недвижимости на карте</h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151227.08369325678!2d23.686045272811683!3d53.68399449129299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dfd64beac55d1d%3A0xf013fd26569718c0!2z0JPRgNC-0LTQvdC-LCDQk9GA0L7QtNC90LXQvdGB0LrQsNGPINC-0LHQu9Cw0YHRgtGMLCDQkdC10LvQsNGA0YPRgdGM!5e0!3m2!1sru!2sfr!4v1713818401178!5m2!1sru!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
     </div>
 </section>

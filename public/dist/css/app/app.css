@@ -336,6 +336,11 @@ html {
   }
 }
 
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .red {
   color: lightcoral;
 }
@@ -1645,9 +1650,9 @@ input[type=file]::file-selector-button:active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 2rem;
 }
 .architect__image img {
+  border-radius: 1rem;
   width: 25rem;
   height: 30rem;
 }
