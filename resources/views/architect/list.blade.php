@@ -26,8 +26,8 @@
                         </div>
                         <div style="margin-top: 10px" class="architects__item-content architects__content">
                             <p class="architects__content-name">
-                                {{ \Illuminate\Support\Str::ucfirst($architect->name)
-                                     . ' ' . \Illuminate\Support\Str::ucfirst($architect->last_name)
+                                {{ \Illuminate\Support\Str::ucfirst($architect->last_name)
+                                     . ' ' . \Illuminate\Support\Str::ucfirst($architect->name)
                                      . ' ' . \Illuminate\Support\Str::ucfirst($architect->father_name)
                                  }}
                             </p>

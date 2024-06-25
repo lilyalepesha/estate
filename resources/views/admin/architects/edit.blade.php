@@ -1,5 +1,3 @@
-
-Копировать код
 @extends('layouts.admin.main')
 
 @section('content')
