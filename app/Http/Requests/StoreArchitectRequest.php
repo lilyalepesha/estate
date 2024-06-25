@@ -18,11 +18,11 @@ class StoreArchitectRequest extends FormRequest
             'name' => ['required', 'string', 'min:2', 'max:255'],
             'last_name' =>  ['required', 'string', 'min:2', 'max:255'],
             'father_name' =>  ['required', 'string', 'min:2', 'max:255'],
-            'description' => ['required', 'string', 'max:1000'],
+            'description' => ['nullable', 'string', 'max:1000'],
             'email' => ['required', 'email', 'unique:architects,email'],
             'password' => ['required', 'min:8', 'string'],
             'experience' => ['required', 'max:255'],
-            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp']
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5000']
         ];
     }
 
