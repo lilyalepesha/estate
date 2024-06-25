@@ -30,9 +30,18 @@
                 <div class="architect_register__form-input-wrapper form__input-wrapper">
                     <input name="father_name" value="{{ old('father_name') }}" class="architect_register__form-input form__input"
                            type="text" required placeholder="Отчество">
-
                     <div class="error-validation">
                         @error('father_name')
+                            <span>{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="architect_register__form-input-wrapper form__input-wrapper">
+                    <input name="description" value="{{ old('description') }}" class="architect_register__form-input form__input"
+                           type="text" required placeholder="Описание">
+                    <div class="error-validation">
+                        @error('description')
                             <span>{{ $message }}</span>
                         @enderror
                     </div>

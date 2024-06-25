@@ -20,6 +20,7 @@ class ArchitectRequest extends FormRequest
             'father_name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:architects,email'],
             'password' => ['required', 'min:8'],
+            'description' => ['required', 'string', 'max:1000'],
             'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
         ];
     }
@@ -53,7 +54,10 @@ class ArchitectRequest extends FormRequest
             'avatar.required' => 'Поле :attribute обязательно для заполнения.',
             'avatar.image' => 'Поле :attribute должно быть изображением.',
             'avatar.mimes' => 'Поле :attribute должно иметь расширение jpeg, png или jpg.',
-            'avatar.max' => 'Поле :attribute не должно превышать :max килобайт.'
+            'avatar.max' => 'Поле :attribute не должно превышать :max килобайт.',
+            'description.required' => 'Поле описание обязательно для заполнения.',
+            'description.string' => 'Поле описание должно быть строкой.',
+            'description.max' => 'Поле описание не должно превышать :max символов.',
         ];
     }
 
