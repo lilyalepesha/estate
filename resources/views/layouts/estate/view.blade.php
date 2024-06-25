@@ -1,5 +1,6 @@
 <section class="best">
-    <h1 style="text-align: center; color: white; font-weight: bold">{{ $project->region->street }}</h1>
+    <h1 style="text-align: center; color: white; font-weight: bold">{{ $project->region?->street }}</h1>
+    <input id="region" type="hidden" value="{{ $project->region?->name . ' ' . $project->region?->street }}">
     <div class="container best__container">
         <div class="best__image-wrapper">
             @if(!empty($project->main_image))
@@ -72,9 +73,24 @@
                 </li>
             @endforeach
         </ul>
+
+        <div class="best__map">
+            <h2 class="best__map-title">Объект недвижимости на карте</h2>
+            <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2700.0928759792127!2d9.623470076381876!3d47.41012957117247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479b169aecabd24d%3A0x73fe2a3639d01ba0!2siframe%20AG!5e0!3m2!1sru!2sby!4v1719352177113!5m2!1sru!2sby" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </div>
     <div id="myModal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 </section>
+<script>
+    const address = document.getElementById('region').value.trim();
+    if (address) {
+        const encodedAddress = encodeURIComponent(address);
+        const iframeSrc = `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
+        document.getElementById('map').src = iframeSrc;
+    } else {
+        alert('Address not found');
+    }
+</script>
